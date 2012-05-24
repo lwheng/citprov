@@ -1,4 +1,66 @@
 <header class="jumbotron subhead" id="overview">
-<h1>Oops! We're Sorry!</h1>
-<p class="lead">We are working on an easier and more convenient way to annotate. Please come back again!</p>
+	<h1>Annotate (Alpha)</h1>
+	<p class="lead">We are working on an easier and more convenient way to annotate. Please come back again!</p>
 </header>
+
+<form method="POST">
+	<div class="row">
+		<div class="span4">
+		<div id="annotatingForm">
+			<div>
+				This is text that can be selected
+			</div>
+			<div>
+				just try it! Click on me
+			</div>
+			<div>
+				and you will find that I can turn
+			</div>
+			<div>
+				yellow in color. I mean colour, cos
+			</div>
+			<div>
+				we're previously a british colony and all that
+			</div>
+			<div>
+				and the bloody americans keep trying
+			</div>
+			<div>
+				to mess with the english language.
+			</div>
+			<div>
+				It's called english and not americanlish
+			</div>
+			<div>
+				for a damn good reason.
+			</div>
+		</div>
+		</div>
+	</div>
+</form>
+
+<script>
+content_holder = document.getElementById('annotatingForm');
+for(var i=0;i<content_holder.children.length;i++) {
+  (function() {
+	   var d = content_holder.children[i];
+	   d.field = document.createElement("input");
+	   d.field.type = 'checkbox';
+	   d.field.name = 'testing';
+	   d.field.hidden = 'true'
+	   d.appendChild(d.field);
+	   d.onclick = function() {
+		   if(!d.selected) {
+			   d.style.backgroundColor = '#FFFFAA'
+			   d.selected = true;
+			   d.field.checked = 'true'
+		   }
+		   else {
+			   d.style.backgroundColor = '#FFFFFF'
+			   d.selected = false;
+			   d.field.checked = ''
+		   }
+	   }
+   })();
+}
+</script>
