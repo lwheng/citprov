@@ -3,44 +3,143 @@
 	<p class="lead">We are working on an easier and more convenient way to annotate. Please come back again!</p>
 </header>
 
-<form method="POST">
-	<div class="row">
-		<div class="span4">
-		<div id="annotatingForm">
-			<div>
-				This is text that can be selected
+<div class = "row">
+	<div class="span6">
+		<h2>Citing Paper <small>Contains the Citation</small></h2>
+		<form class="well">
+			<div id="citingPaper" style="position:relative; 
+			 left:0px;
+			 top:0px;
+			 width:100%;
+			 height:300px;
+			 background-color:#ffffff;
+			 overflow:auto;">
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 			</div>
-			<div>
-				just try it! Click on me
-			</div>
-			<div>
-				and you will find that I can turn
-			</div>
-			<div>
-				yellow in color. I mean colour, cos
-			</div>
-			<div>
-				we're previously a british colony and all that
-			</div>
-			<div>
-				and the bloody americans keep trying
-			</div>
-			<div>
-				to mess with the english language.
-			</div>
-			<div>
-				It's called english and not americanlish
-			</div>
-			<div>
-				for a damn good reason.
-			</div>
-		</div>
-		</div>
+		</form>
 	</div>
-</form>
+	<div class="span6">
+		<h2>Cited Paper <small>Contains the Cited Information</small></h2>
+		<form method="POST" class="well">
+			<div id="citedPaper" style="position:relative; 
+			 left:0px;
+			 top:0px;
+			 width:100%;
+			 height:300px;
+			 background-color:#ffffff;
+			 overflow:auto;">
+				<div>
+					This is text that can be selected
+				</div>
+				<div>
+					just try it! Click on me
+				</div>
+				<div>
+					and you will find that I can turn
+				</div>
+				<div>
+					yellow in color. I mean colour, cos
+				</div>
+				<div>
+					we're previously a british colony and all that
+				</div>
+				<div>
+					and the bloody americans keep trying
+				</div>
+				<div>
+					to mess with the english language.
+				</div>
+				<div>
+					It's called english and not americanlish
+				</div>
+				<div>
+					for a damn good reason.
+				</div>
+				<div>
+					This is text that can be selected
+				</div>
+				<div>
+					just try it! Click on me
+				</div>
+				<div>
+					and you will find that I can turn
+				</div>
+				<div>
+					yellow in color. I mean colour, cos
+				</div>
+				<div>
+					we're previously a british colony and all that
+				</div>
+				<div>
+					and the bloody americans keep trying
+				</div>
+				<div>
+					to mess with the english language.
+				</div>
+				<div>
+					It's called english and not americanlish
+				</div>
+				<div>
+					for a damn good reason.
+				</div>
+				<div>
+					This is text that can be selected
+				</div>
+				<div>
+					just try it! Click on me
+				</div>
+				<div>
+					and you will find that I can turn
+				</div>
+				<div>
+					yellow in color. I mean colour, cos
+				</div>
+				<div>
+					we're previously a british colony and all that
+				</div>
+				<div>
+					and the bloody americans keep trying
+				</div>
+				<div>
+					to mess with the english language.
+				</div>
+				<div>
+					It's called english and not americanlish
+				</div>
+				<div>
+					for a damn good reason.
+				</div>
+			</div>
+		</form>
+		<div class="control-group">
+			<label class="control-label" for="citationClassification">Classification of Citation</label>
+			<select id="citationClassification">
+				<option>&lt;Pick Citation Classification&gt;</option>
+				<option>Compare & Contrast</option>
+				<option>Weakness</option>
+				<option>Strength</option>
+				<option>Neutral</option>
+			</select>
+			<label class="control-label">Type of Citation</label>
+			<div class="controls">
+				<label class="radio">
+					<input type="radio" name="citationTypeRadio" id="citationTypeRadio1">General</input>
+				</label>
+				<label class="radio">
+					<input type="radio" name="citationTypeRadio" id="citationTypeRadio2">Undetermined</input>
+				</label>
+			</div>
+		</div>
+		<div class="form-actions">
+			<button type="submit" class="btn btn-primary">Submit Annotations</button>
+			<button type="cancel" class="btn">Clear</button>
+		</div>
+</div>
 
 <script>
-content_holder = document.getElementById('annotatingForm');
+content_holder = document.getElementById('citedPaper');
 for(var i=0;i<content_holder.children.length;i++) {
   (function() {
 	   var d = content_holder.children[i];
