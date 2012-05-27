@@ -43,5 +43,15 @@ class PagesController < ApplicationController
     @about = ""
     @contact = "active"
   end
+  
+  def classification
+    @title = "Classification"
+    @home = ""
+    @citation = ""
+    @annotate = ""
+    @about = ""
+    @contact = ""
+    @classification = "active"
+  end
 
 end

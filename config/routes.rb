@@ -5,6 +5,7 @@ Citprov::Application.routes.draw do
   match '/annotate' => 'pages#annotate', :as => "annotate"
   match '/about' => 'pages#about', :as => "about"
   match '/contact' => 'pages#contact', :as => "contact"
+  match '/classification' => 'pages#classification', :as => "classification"
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
