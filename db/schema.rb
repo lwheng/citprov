@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120528101402) do
+ActiveRecord::Schema.define(:version => 20120528124811) do
+
+  create_table "annotations", :force => true do |t|
+    t.string   "matric"
+    t.string   "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "papers", :force => true do |t|
     t.string   "name"
