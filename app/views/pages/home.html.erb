@@ -28,7 +28,7 @@ The objective of this task is to gather manual annotations for our research. We 
 			<h4>Weak</h4>
 				<code>Weak</code>
 			<h4>Contrast or Comparison</h4>
-				<code>CoCoGM</code>, <code>CoCoR0</code>, <code>CoCo-</code>, <code>CoCoXY</code>
+				<code>CoCoGM</code>, <code>CoCoR0</code>, <code>CoCoR-</code>, <code>CoCoXY</code>
 			<h4>Positive/Useful</h4>
 				<code>PBas</code>, <code>PUse</code>, <code>PModi</code>, <code>PMot</code>, <code>PSim</code>, <code>PSup</code>
 			<h4>Neutral</h4>
@@ -109,32 +109,57 @@ In the working file, we capture annotations in "3 columns" separated by the comm
 </div>
 
 <h2>Approach</h2>
-<p>The general approach to annotating one citation is as follow:</p>
-<pre>
+<p>The approach to annotating one citation is as follow:</p>
+<form class="well">
 <ol>
-<li>Can the type of citation determined? Yes (Go to step 3) / No (Go to step 2).
-<li>Annotate as Undetermined. Go to step 6.
-<li>Is the citation Specific? Yes (Go to step 5) / No (Go to step 4).
-<li>Annotate as General. Go to step 6.
-<li>Annotate as Specific. Go to step 6.
+<strong>Determining the Classification</strong>
+<li>Is there any explicit weakness? Yes (Go to step 2) / No (Go to step 3)</li>
+<li>Annotate as <code>Weak</code>. (Go to step 21)</li>
+<li>Is there any explicit statement that the author work is <strong>based</strong> on the cited paper? Yes (Go to step 4) / No (Go to step 5)</li>
+<li>Annotate as <code>PBas</code>. (Go to step 21)
+<li>Is there any explicit statement about the author <strong>using</strong> any data/algorithms/definitions in the cited paper? Yes (Go to step 8) / No (Go to step 6)</li>
+<li>Is there any explicit statement about the author <strong>adapts or modifies</strong> any data/algorithms in the cited paper? Yes (Go to step 8) / No (Go to step 7)</li>
+<li>Is there any explicit statement about the author uses the cited paper as a <strong>motivation</strong>? Yes (Go to step 8) / No (Go to step 9)</li>
+<li>Annotate as <code>PUse</code> (from step 5) / <code>PModi</code> (from step 6) / <code>PMot</code> (from step 7). (Go to step 21)</li>
+<li>Is there any explicit <strong>compare and contrast</strong> between the work in the citing paper and the cited paper? Yes (Go to step 10) / No (Go to step 13)</li>
+<li>Is the compare and contrast <strong>negative</strong>? Yes (Go to step 11) / No (Go to step 12)</li>
+<li>Annotate as <code>CoCoR-</code>. (Go to step 21)</li>
+<li>Is the compare and contrast is related to their <strong>goals and methods</strong>? Yes (Go to step 13) / No (Go to step 14)</li>
+<li>Annotate as <code>CoCoR0</code> (Go to step 21)</li>
+<li>Annotate as <code>CoCoGM</code>. (Go to step 21)</li>
+<li>Is there any explicit statement about <strong>similarity</strong> with cited paper? Yes (Go to step 17) / No (Go to step 16)</li>
+<li>Is there any explicit statement about the author <strong>supporting</strong> the cited paper? Yes (Go to step 17) / No (Go to step 18)</li>
+<li>Annotate as <code>PSim</code> (from step 15) / <code>PSup</code> (from step 16). (Go to step 21)</li>
+<li>Is there any explicit statement about the author <strong>contrasting two works</strong> not related to the citing paper? Yes (Go to step 19) / No (Go to step 20)</li>
+<li>Annotate as <code>CoCoXY</code>. (Go to step 21)</li>
+<li>Annotate as <code>Neut</code>. (Go to step 21)</li>
+
+<strong>Determining the Type</strong>
+<li>Can the type of citation determined? Yes (Go to step 23) / No (Go to step 22).
+<li>Annotate as <code>?</code>(Represents Undetermined). (Go to step 26)
+<li>Is the citation Specific? Yes (Go to step 25) / No (Go to step 24)
+<li>Annotate as <code>-</code>(Represents General). (Go to step 26)
+<li>Annotate as Specific(See #). Go to step 26.
 <li>End.
 </ol>
-# Note: Recall the variations for Specific citations.
-# Note: For multi-locations, it can be a combination of single-line and multi-line i.e. <code>46!153-188</code> or <code>153-188!200</code>
-</pre>
+<p><i># Note:<br>
+Recall the variations for Specific citations.<br>
+For multi-locations, it can be a combination of single-line and multi-line i.e. <code>46!153-188</code> or <code>153-188!200</code><br>
+If at this point you are unsure how to annotate Specific, check again <a href="/classification">here</a></i></p>
+</form>
 <h2>Getting Started</h2>
 <p>The following is the general steps you need to take to complete this task:</p>
-<pre>
+<form class="well">
 <ol>
 <li>Use your favourite text editor that has line number display. I recommend <a href="http://www.sublimetext.com/2" target="_blank">Sublime Text 2</a>.
 <li>Open up the <strong>working file</strong>.
 <li>Start from the first un-annotated entry you find.
 <li>Open up the papers as identified by the IDs.
 <li>In the cited paper, look for Author Names, Title, and Year of Publication. This gives you a clue how the citation would look like. With this info, look at the <strong>References</strong> section in the citing paper. Look for the citing sentence that contains the citation in the citing paper.
-<li>Once you found the citing sentence, read briefly to find out that citation is for, and what cited information it is referring to.
-<li>Now you know what the citation is for, look for the cited information in the cited paper. Then determine the type of the citation.
+<li>Once you found the <strong>citing sentence</strong>, read briefly to find out that citation is for, and what cited information it is referring to.
+<li>Now you know what the citation is for, look for the <strong>cited information</strong> in the cited paper. Then determine the <strong>classification & type</strong> of the citation.
 <li>Annotate according to the <strong>Approach</strong>.
 <li>Repeat step 3 till you are done.
 </ol>
-</pre>
+</form>
 </section>
