@@ -7,6 +7,7 @@ Citprov::Application.routes.draw do
   match '/contact' => 'pages#contact', :as => "contact"
   match '/classification' => 'pages#classification', :as => "classification"
   match '/download' => 'pages#download', :as => "download"
+  match '/upload' => 'pages#upload', :as => "upload"
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

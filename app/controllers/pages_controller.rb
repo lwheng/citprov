@@ -7,6 +7,7 @@ class PagesController < ApplicationController
   @contact = ""
   @classification = ""
   @download = ""
+  @upload = ""
   def home
     @title = "Home"
     @home = "active"
@@ -40,6 +41,11 @@ class PagesController < ApplicationController
   def download
     @title = "Download"
     @download = "active"
+  end
+  
+  def upload
+    @title = "Upload"
+    @upload = "active"
   end
 
 end
