@@ -1,4 +1,5 @@
 Citprov::Application.routes.draw do
+
   root :to => 'pages#home', :as => "home"
   match '/home' => 'pages#home', :as => "home"
   match '/citation' => 'pages#citation', :as => "citation"
@@ -7,7 +8,8 @@ Citprov::Application.routes.draw do
   match '/contact' => 'pages#contact', :as => "contact"
   match '/classification' => 'pages#classification', :as => "classification"
   match '/download' => 'pages#download', :as => "download"
-  match '/upload' => 'pages#upload', :as => "upload"
+  match '/upload' => 'annotations#upload', :as => "upload"
+  match '/upload_data' => 'annotations#upload_data', :as => "upload_data"
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

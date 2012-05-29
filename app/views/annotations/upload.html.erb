@@ -1,0 +1,12 @@
+<header class="jumbotron subhead" id="overview">
+	<h1>Upload <small>(Work in Progress)</small></h1>
+	<p class="lead">To upload annotations you made for this task.</p>
+</header>
+<!-- <h2>Sorry! This page is still under construction!</h2> -->
+<%= form_tag(upload_data_path) do %>
+  <%= label_tag(:q, "User") %>
+  <%= text_field_tag(:user) %>
+  <%= label_tag(:q, "Annotation") %>
+  <%= text_area_tag(:annotation) %><br>
+  <%= submit_tag("Submit") %>
+<% end %>

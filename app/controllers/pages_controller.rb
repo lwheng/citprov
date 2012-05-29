@@ -1,13 +1,4 @@
 class PagesController < ApplicationController
-  @title = ""
-  @home = ""
-  @citation = ""
-  @annotate = ""
-  @about = ""
-  @contact = ""
-  @classification = ""
-  @download = ""
-  @upload = ""
   def home
     @title = "Home"
     @home = "active"
