@@ -1,5 +1,4 @@
 Citprov::Application.routes.draw do
-  resources :annotations
   
   root :to => 'pages#home', :as => "home"
   match '/home' => 'pages#home', :as => "home"
