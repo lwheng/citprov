@@ -17,6 +17,7 @@ class Annotation < ActiveRecord::Base
   validates :citation, presence: true
   
   def self.parse(args)
+    # Parses annotation and returns a hash
     citations = args.split("\n")
     h = {}
     
@@ -29,5 +30,10 @@ class Annotation < ActiveRecord::Base
       h[cite_key] = { :cite_class => cite_class, :cite_type => cite_type }
     end
     h
+  end
+  
+  def self.merge(old_citation, new_citation)
+    # Merges old citation and new citation
+    puts "Hello"
   end
 end

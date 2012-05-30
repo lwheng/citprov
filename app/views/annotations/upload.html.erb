@@ -6,12 +6,12 @@
 <div class="row">
 	<div class="span4">
 		<%= form_tag(upload_data_path, :class => "well") do %>
-		  <%= label_tag(:q, "User") %>
-		  <%= text_field_tag(:user) %>
+		  <%= label_tag(:q, "Matric/MTurk ID") %>
+			<!-- <input type="text" class="span3" placeholder="Type something…"> -->
+		  <%= text_field_tag(:user, nil, :placeholder => 'User') %>
 		  <%= label_tag(:q, "Annotation") %>
-		  <%= text_area_tag(:annotation) %><br>
+		  <%= text_area_tag(:annotation, nil, :placeholder => 'Annotation', :class => "input-xlarge", :rows => "10") %><br>
 		  <%= submit_tag(:Submit, :class => "btn btn-primary") %>
-			<%= button_tag(:Clear, :class => "btn") %>
 		<% end %>
 	</div>
 </div>
