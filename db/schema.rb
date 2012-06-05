@@ -11,11 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120529100348) do
+ActiveRecord::Schema.define(:version => 20120530112916) do
 
   create_table "annotations", :force => true do |t|
-    t.string   "user"
-    t.text     "citation"
+    t.string   "cite_key"
+    t.text     "user"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -15,47 +15,18 @@
 <div class="page-header">
 <h1>Task Description <small>What is this task all about?</small></h1>
 </div>
-This data collection task is part of our research project that aims to determine Citation Provenance (read more on the <a href="/about">purpose</a> of the project). The task, is to annotate scientific papers, capturing information leading to the information referred to by the citation (i.e. cited information).
+<!-- <p>This data collection task is part of our research project that aims to determine Citation Provenance (read more on the <a href="/about">purpose</a> of the project). The task, is to annotate scientific papers, capturing information leading to the information referred to by the citation (i.e. cited information).</p> -->
 <p>
+	In this task, you will be annotating scientific papers with details about the <b>classification</b> & <b>type</b> of citations. When you annotate for the scientific papers, you will need to read through a set of <b>citing papers</b> to look for <b>citing sentences</b> and a set of <b>cited papers</b> to look for the <b>cited information</b>. Finally for each citation, you will key in details into the <b>working file</b>.
+</p>
 <h2>Task Objective</h2>
 <p>
-The objective of this task is to gather manual annotations for our research. We wish to determine the classification of a citation, and the type of the citation. There is a total of <strong>12 classifications</strong>, and <strong>3 types</strong> of citation for our date collection. 
+The objective of this task is to gather manual annotations for our research. We wish to determine the classification of a citation, and the type of the citation. There is a total of <b>12 classifications</b>, and <b>3 types</b> of citation.
 </p>
-<div class="row">
-	<div class="span6">
-		<div class="alert alert-info">
-			<h3>Classification</h3>
-			<h4>Weak</h4>
-				<code>Weak</code>
-			<h4>Contrast or Comparison</h4>
-				<code>CoCoGM</code>, <code>CoCoR0</code>, <code>CoCoR-</code>, <code>CoCoXY</code>
-			<h4>Positive/Useful</h4>
-				<code>PBas</code>, <code>PUse</code>, <code>PModi</code>, <code>PMot</code>, <code>PSim</code>, <code>PSup</code>
-			<h4>Neutral</h4>
-				<code>Neut</code>
-		</div>	
-	</div>
-	<div class="span6">
-		<div class="alert alert-success">
-			<h3>Type</h3>
-			<h4>General</h4>A <strong>General</strong> citation simply means Paper A is citing Paper B in general. Paper A is making reference to Paper B as a whole, or simply giving credit for the work done by authors of Paper B.
-			<h4>Specific</h4>A <strong>Specific</strong> citation means Paper A is making reference to a <strong>specific</strong> section of Paper B. For instance, Paper A makes reference to a particular system, System ABC, created/described by Paper B in Paper B's second section (e.g. Our System). Since Paper A is specifically referring to this section of the paper, we say this cite is specific.
-			<h4>Undetermined</h4>In cases where it is not possible to determine the type of the citation.
-		</div>
-	</div>
-</div>
-
 <h2>Task Requirements</h2>
 <p>
-A participant, provided with a set of scientific papers, need to do the following:
-<ul>
-	<li>To determine the <strong>classification</strong> of the citation.</li>
-	<li>To determine the <strong>type</strong> of the citation.</li>
-	<li>To annotate the citation with the above details.</li>
-</ul>
-To do so, the participant needs to refer to the <strong>citing sentence</strong> in the citing paper, and attempt to locate the <strong>cited information</strong> in the cited paper. If you're ready, go on to <a href="./home#Annotate">How To Annotate</a>.
+	You will need to download the scientific papers, and the working file to complete the task. At the end of the task, you are only required to submit the annotation in the <b>working file</b>.
 </p>
-<a href="./citation"><p class="muted">What is citation, citing sentence or cited information?</p></a>
 </section>
 
 <!-- How to Annotate
@@ -66,21 +37,50 @@ To do so, the participant needs to refer to the <strong>citing sentence</strong>
 </div>
 
 <div class="row">
+	<div class="span6">
+		<%= form_tag(nil, :class => "well") do %>
+		<ol>
+			<p><b>Downloading the necessary files</b></p>
+			<li>Download the scientific papers and the working file. Download them <a href="/download" target="_blank">here</a>.</li>
+			<li>Open the <b>working file</b></li>
+			<li>Look at the first entry that is not annotated, and open the <b>citing paper</b> and the <b>cited paper</b>.</li>
+			<p><b>Locating the citation</b> <a href="/citation"><span class="muted">What is citing/cited paper, citation?</span></a></p>
+			<li>Look for the cited paper's <b>title</b>, <b>author(s) names</b>.</li>
+			<li>Look for this <b>title</b> and <b>author(s)</b> in the citing paper's References section (at the bottom/end of paper). You are now determining how the <b>citation</b> looks like.</li>
+			<li>Look for the entry in the References section that matches the <b>title</b> and <b>author(s)</b>. This entry will tell you how the citation looks like. The citation would either be numbered or be made up using the first author's last name. E.g. <b>[12]</b> or <b>(Smith, 1999)</b>.</li>
+		</ol>
+		<% end %>
+	</div>
+	
+	<div class="span6">
+<pre class="prettyprint linenums">
+A00-1003==>P99-1029,PSim,-
+A00-1004==>A00-1019,CoCoGM,46!153-188
+A00-1004==>J93-1006,Neut,?
+A00-1004==>J93-2003,
+A00-1004==>P91-1022,
+A00-1004==>P91-1023,
+</pre>
+<p align="center">Fig. <b>Sample Working File</b> with first 3 entries annotated</p>
+	</div>
+</div>
+
+<!-- <div class="row">
 <div class="span8">
 <p>
-Recall that the objective of this task to determine the classification and type of the citation, and then to annotate with details about the citation. Annotating begins with a <strong>working file</strong> that will be provided to you. Your task, is to annotate by entering information into this working file. See that the <strong>first 3 lines</strong> has already been filled with the details. Don't worry about that dash / numbers / question mark means for now, we'll explain it shortly.
+Recall that the objective of this task to determine the classification and type of the citation, and then to annotate with details about the citation. Annotating begins with a <b>working file</b> that will be provided to you. Your task, is to annotate by entering information into this working file. See that the <b>first 3 lines</b> has already been filled with the details. Don't worry about that dash / numbers / question mark means for now, we'll explain it shortly.
 </p>
 <h2>What do I need?</h2>
 <p>To perform this task you would need:</p>
 <ul>
-<li>The <strong>working file</strong>, which tells you the citation relationship between papers. E.g. <code>A00-1003==>P99-1029</code> means <strong>A00-1003</strong> cites <strong>P99-1029</strong>.</li>
-<li>A set of scientific papers (as referred to in the working file). Each file is named with its ID. E.g. <strong>A00-1001.txt</strong></li>
+<li>The <b>working file</b>, which tells you the citation relationship between papers. E.g. <code>A00-1003==>P99-1029</code> means <b>A00-1003</b> cites <b>P99-1029</b>.</li>
+<li>A set of scientific papers (as referred to in the working file). Each file is named with its ID. E.g. <b>A00-1001.txt</b></li>
 </ul>
-<p>You would also need to use your favourite text editor that has <strong>line number display</strong>. <span class="muted">(I recommended <a href="http://www.sublimetext.com/2" target="_blank">Sublime Text 2</a>)</span></p>
+<p>You would also need to use your favourite text editor that has <b>line number display</b>. <span class="muted">(I recommended <a href="http://www.sublimetext.com/2" target="_blank">Sublime Text 2</a>)</span></p>
 </div>
 
 <div class="span4">
-<strong>Sample Working File</strong>
+<b>Sample Working File</b>
 <pre class="prettyprint linenums">
 A00-1003==>P99-1029,PSim,-
 A00-1004==>A00-1019,CoCoGM,46!153-188
@@ -99,11 +99,11 @@ In the working file, we capture annotations in "3 columns" separated by the comm
 <div class="alert alert-info">
 <h3 align="center"><i>&lt;cite&gt;,&lt;classification&gt;,&lt;type&gt;</i></h3>
 </div>
-<p><strong>&lt;cite&gt;</strong> would be provided for you already. E.g. <code>A00-1003==>P99-1029</code></p>
-<p><strong>&lt;classfication&gt;</strong> is one of the 12 classifications. E.g. <code>PSim</code></p>
-<p><strong>&lt;type&gt;</strong> is one of the 3 types. E.g. <code>8!152-155</code></p>
+<p><b>&lt;cite&gt;</b> would be provided for you already. E.g. <code>A00-1003==>P99-1029</code></p>
+<p><b>&lt;classfication&gt;</b> is one of the 12 classifications. E.g. <code>PSim</code></p>
+<p><b>&lt;type&gt;</b> is one of the 3 types. E.g. <code>8!152-155</code></p>
 <div class="alert alert-error">
-<p>It is <strong>important</strong> that you know the explanations of classifications & types. Click <a href="/classification">here</a> to read more.</p>
+<p>It is <b>important</b> that you know the explanations of classifications & types. Click <a href="/classification">here</a> to read more.</p>
 </div>
 </div>
 </div>
@@ -112,29 +112,29 @@ In the working file, we capture annotations in "3 columns" separated by the comm
 <p>The approach to annotating one citation is as follow:</p>
 <form class="well">
 <ol>
-<strong>Determining the Classification</strong>
+<b>Determining the Classification</b>
 <li>Is there any explicit weakness? Yes (Go to step 2) / No (Go to step 3)</li>
 <li>Annotate as <code>Weak</code>. (Go to step 21)</li>
-<li>Is there any explicit statement that the author work is <strong>based</strong> on the cited paper? Yes (Go to step 4) / No (Go to step 5)</li>
+<li>Is there any explicit statement that the author work is <b>based</b> on the cited paper? Yes (Go to step 4) / No (Go to step 5)</li>
 <li>Annotate as <code>PBas</code>. (Go to step 21)
-<li>Is there any explicit statement about the author <strong>using</strong> any data/algorithms/definitions in the cited paper? Yes (Go to step 8) / No (Go to step 6)</li>
-<li>Is there any explicit statement about the author <strong>adapts or modifies</strong> any data/algorithms in the cited paper? Yes (Go to step 8) / No (Go to step 7)</li>
-<li>Is there any explicit statement about the author uses the cited paper as a <strong>motivation</strong>? Yes (Go to step 8) / No (Go to step 9)</li>
+<li>Is there any explicit statement about the author <b>using</b> any data/algorithms/definitions in the cited paper? Yes (Go to step 8) / No (Go to step 6)</li>
+<li>Is there any explicit statement about the author <b>adapts or modifies</b> any data/algorithms in the cited paper? Yes (Go to step 8) / No (Go to step 7)</li>
+<li>Is there any explicit statement about the author uses the cited paper as a <b>motivation</b>? Yes (Go to step 8) / No (Go to step 9)</li>
 <li>Annotate as <code>PUse</code> (from step 5) / <code>PModi</code> (from step 6) / <code>PMot</code> (from step 7). (Go to step 21)</li>
-<li>Is there any explicit <strong>compare and contrast</strong> between the work in the citing paper and the cited paper? Yes (Go to step 10) / No (Go to step 13)</li>
-<li>Is the compare and contrast <strong>negative</strong>? Yes (Go to step 11) / No (Go to step 12)</li>
+<li>Is there any explicit <b>compare and contrast</b> between the work in the citing paper and the cited paper? Yes (Go to step 10) / No (Go to step 13)</li>
+<li>Is the compare and contrast <b>negative</b>? Yes (Go to step 11) / No (Go to step 12)</li>
 <li>Annotate as <code>CoCoR-</code>. (Go to step 21)</li>
-<li>Is the compare and contrast is related to their <strong>goals and methods</strong>? Yes (Go to step 13) / No (Go to step 14)</li>
+<li>Is the compare and contrast is related to their <b>goals and methods</b>? Yes (Go to step 13) / No (Go to step 14)</li>
 <li>Annotate as <code>CoCoR0</code> (Go to step 21)</li>
 <li>Annotate as <code>CoCoGM</code>. (Go to step 21)</li>
-<li>Is there any explicit statement about <strong>similarity</strong> with cited paper? Yes (Go to step 17) / No (Go to step 16)</li>
-<li>Is there any explicit statement about the author <strong>supporting</strong> the cited paper? Yes (Go to step 17) / No (Go to step 18)</li>
+<li>Is there any explicit statement about <b>similarity</b> with cited paper? Yes (Go to step 17) / No (Go to step 16)</li>
+<li>Is there any explicit statement about the author <b>supporting</b> the cited paper? Yes (Go to step 17) / No (Go to step 18)</li>
 <li>Annotate as <code>PSim</code> (from step 15) / <code>PSup</code> (from step 16). (Go to step 21)</li>
-<li>Is there any explicit statement about the author <strong>contrasting two works</strong> not related to the citing paper? Yes (Go to step 19) / No (Go to step 20)</li>
+<li>Is there any explicit statement about the author <b>contrasting two works</b> not related to the citing paper? Yes (Go to step 19) / No (Go to step 20)</li>
 <li>Annotate as <code>CoCoXY</code>. (Go to step 21)</li>
 <li>Annotate as <code>Neut</code>. (Go to step 21)</li>
 
-<strong>Determining the Type</strong>
+<b>Determining the Type</b>
 <li>Can the type of citation determined? Yes (Go to step 23) / No (Go to step 22).
 <li>Annotate as <code>?</code>(Represents Undetermined). (Go to step 26)
 <li>Is the citation Specific? Yes (Go to step 25) / No (Go to step 24)
@@ -152,14 +152,14 @@ If at this point you are unsure how to annotate Specific, check again <a href="/
 <form class="well">
 <ol>
 <li>Use your favourite text editor that has line number display. I recommend <a href="http://www.sublimetext.com/2" target="_blank">Sublime Text 2</a>.
-<li>Open up the <strong>working file</strong>.
+<li>Open up the <b>working file</b>.
 <li>Start from the first un-annotated entry you find.
 <li>Open up the papers as identified by the IDs.
-<li>In the cited paper, look for Author Names, Title, and Year of Publication. This gives you a clue how the citation would look like. With this info, look at the <strong>References</strong> section in the citing paper. Look for the citing sentence that contains the citation in the citing paper.
-<li>Once you found the <strong>citing sentence</strong>, read briefly to find out that citation is for, and what cited information it is referring to.
-<li>Now you know what the citation is for, look for the <strong>cited information</strong> in the cited paper. Then determine the <strong>classification & type</strong> of the citation.
-<li>Annotate according to the <strong>Approach</strong>.
+<li>In the cited paper, look for Author Names, Title, and Year of Publication. This gives you a clue how the citation would look like. With this info, look at the <b>References</b> section in the citing paper. Look for the citing sentence that contains the citation in the citing paper.
+<li>Once you found the <b>citing sentence</b>, read briefly to find out that citation is for, and what cited information it is referring to.
+<li>Now you know what the citation is for, look for the <b>cited information</b> in the cited paper. Then determine the <b>classification & type</b> of the citation.
+<li>Annotate according to the <b>Approach</b>.
 <li>Repeat step 3 till you are done.
 </ol>
-</form>
+</form> -->
 </section>
