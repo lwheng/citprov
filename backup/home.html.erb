@@ -15,16 +15,17 @@
 <div class="page-header">
 <h1>Task Description <small>What is this task all about?</small></h1>
 </div>
+<!-- <p>This data collection task is part of our research project that aims to determine Citation Provenance (read more on the <a href="/about">purpose</a> of the project). The task, is to annotate scientific papers, capturing information leading to the information referred to by the citation (i.e. cited information).</p> -->
 <p>
-	In this task, you will be annotating scientific papers with details about the <b>type</b> of citations. When you annotate for the scientific papers, you will need to read through a set of <b>citing papers</b> to look for <b>citing sentences</b> and a set of <b>cited papers</b> to look for the <b>cited information</b>. Finally for each citation, you will key in details into the <b>working file</b>.
+	In this task, you will be annotating scientific papers with details about the <b>classification</b> & <b>type</b> of citations. When you annotate for the scientific papers, you will need to read through a set of <b>citing papers</b> to look for <b>citing sentences</b> and a set of <b>cited papers</b> to look for the <b>cited information</b>. Finally for each citation, you will key in details into the <b>working file</b>.
 </p>
 <h2>Task Objective</h2>
 <p>
-The objective of this task is to gather manual annotations for our research. We wish to determine the type of the citation. There is a total of <b>3 types</b> of citation.
+The objective of this task is to gather manual annotations for our research. We wish to determine the classification of a citation, and the type of the citation. There is a total of <b>12 classifications</b>, and <b>3 types</b> of citation.
 </p>
 <h2>Task Requirements</h2>
 <p>
-	You will need to download the scientific papers, and the working file to complete the task. You will annotate for the scientific papers, entering the details into the working file. At the end of the task, you are only required to submit your annotation in the <b>working file</b>.
+	You will need to download the scientific papers, and the working file to complete the task. At the end of the task, you are only required to submit the annotation in the <b>working file</b>.
 </p>
 </section>
 
@@ -40,20 +41,13 @@ The objective of this task is to gather manual annotations for our research. We 
 		<%= form_tag(nil, :class => "well") do %>
 		<ol>
 			<p><b>Downloading the necessary files</b></p>
-			<li>Download the scientific papers and the working file. Download them <%= link_to "here", download_path, :target => "_blank" %>.</li>
+			<li>Download the scientific papers and the working file. Download them <a href="/download" target="_blank">here</a>.</li>
 			<li>Open the <b>working file</b></li>
 			<li>Look at the first entry that is not annotated, and open the <b>citing paper</b> and the <b>cited paper</b>.</li>
-			<p>
-			<p><b>Locating the citation</b> (<%= link_to "What is citing/cited paper, citation?", citation_path %>)</p>
-			<li>Look for the <b>cited paper</b>'s <b>title</b>, <b>author(s) names</b>.</li>
-			<li>Look for this <b>title</b> and <b>author(s)</b> in the <b>citing paper</b>'s References section (at the bottom/end of paper). You are now determining how the <b>citation</b> looks like.</li>
+			<p><b>Locating the citation</b> <a href="/citation"><span class="muted">What is citing/cited paper, citation?</span></a></p>
+			<li>Look for the cited paper's <b>title</b>, <b>author(s) names</b>.</li>
+			<li>Look for this <b>title</b> and <b>author(s)</b> in the citing paper's References section (at the bottom/end of paper). You are now determining how the <b>citation</b> looks like.</li>
 			<li>Look for the entry in the References section that matches the <b>title</b> and <b>author(s)</b>. This entry will tell you how the citation looks like. The citation would either be numbered or be made up using the first author's last name. E.g. <b>[12]</b> or <b>(Smith, 1999)</b>.</li>
-			<li>Look for the <b>citing sentence</b> that contains the citation.</li>
-			<p>
-			<p><b>Locating the cited information</b></p>
-			<li>Read the citing sentence for the context. Determine the type of the citation (<%= link_to "How?", type_path %>).</li>
-			<li>Annotate for that citation entry</li>
-			<li>Repeat Step 3 till you are done with all entries.</li>
 		</ol>
 		<% end %>
 	</div>

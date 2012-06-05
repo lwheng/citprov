@@ -6,7 +6,7 @@ Citprov::Application.routes.draw do
   match '/annotate' => 'pages#annotate', :as => "annotate"
   match '/about' => 'pages#about', :as => "about"
   match '/contact' => 'pages#contact', :as => "contact"
-  match '/classification' => 'pages#classification', :as => "classification"
+  match '/type' => 'pages#type', :as => "type"
   match '/download' => 'pages#download', :as => "download"
   match '/upload' => 'annotations#upload', :as => "upload"
   match '/upload_data' => 'annotations#upload_data', :as => "upload_data"

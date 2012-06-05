@@ -30,14 +30,14 @@
           </a>
           <div class="container nav-collapse">
             <ul class="nav">
-							<li class="<%= @home %>"><%= link_to "Main", "/home"  %></li>
-              <li class="<%= @citation %>"><%= link_to "Citation", "/citation"  %></li>
-							<li class="<%= @classification %>"><%= link_to "Classification & Type", "/classification"  %></li>
-              <li class="<%= @annotate %>"><%= link_to "Annotate (Work in Progress)", "/annotate"  %></li>
-							<li class="<%= @download %>"><%= link_to "Download (Pilot)", "/download"  %></li>
-							<li class="<%= @upload %>"><%= link_to "Upload (Work in Progress)", "/upload"  %></li>
-              <li class="<%= @about %>"><%= link_to "About", "/about"  %></li>
-							<li class="<%= @contact %>"><%= link_to "Contact", "/contact"  %></li>
+							<li class="<%= @home %>"><%= link_to "Main", home_path  %></li>
+              <li class="<%= @citation %>"><%= link_to "Citation", citation_path  %></li>
+							<li class="<%= @classification %>"><%= link_to "Type", type_path  %></li>
+              <li class="<%= @annotate %>"><%= link_to "Annotate (Work in Progress)", annotate_path  %></li>
+							<li class="<%= @download %>"><%= link_to "Download (Pilot)", download_path  %></li>
+							<li class="<%= @upload %>"><%= link_to "Upload (Work in Progress)", upload_path  %></li>
+              <li class="<%= @about %>"><%= link_to "About", about_path  %></li>
+							<li class="<%= @contact %>"><%= link_to "Contact", contact_path  %></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>

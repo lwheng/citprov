@@ -1,0 +1,124 @@
+<header class="jumbotron subhead" id="overview">
+	<h1>Type</h1>
+	<p class="lead">Determining the Type of Citation</p>
+</header>
+
+<h3>Type</h3>
+<p>In general, there are 3 types of citations.</p>
+<div class="row">
+<div class="span6">
+<div class="alert alert-success">
+<h3>General <small>A single dash (or minus sign)</small></h3>
+<p>A <strong>General</strong> citation is annotated with a single "dash". For example:</p>
+<strong>A00-1003==>P99-1029,</strong><code>-</code>
+<p>
+<p>We annotate a cite as General when we cannot find a specific location for a cited information.</p>
+</div>
+</div>
+
+<div class="span6">
+<div class="alert alert-success">
+<h3>Undetermined <small>A single question mark</small></h3>
+<p>A <strong>Undetermined</strong> citation is annotated with a single "question mark". For example:</p>
+<p><strong>A00-1004==>J93-1006,</strong><code>?</code></p>
+<p>Example (in the cited paper):</p>
+<pre class="prettyprint linenums">
+189
+190
+191
+based tagger by inferring rules...
+</pre>
+<p>The numbers you can see in this examples are actually page numbers in the original paper. So instead of having the actual content, you only have the page number, which is definitely not enough information for you to determine the type of citation.
+</div>
+</div>
+
+</div>
+
+<div class="row">
+<div class="span12">
+<div class="alert alert-success">
+<h3>Specific <small>Numbers/Range/Exclamation</small></h3>
+<p>A <strong>Specific</strong> citation is annotated numbers, ranges and/or exclamation marks. For example:</p>
+<p>Single-line: <strong>A00-1003==>P99-1029,</strong><code>85</code> OR <strong>A00-1003==>P99-1029,</strong><code>85-86</code>. Note that we are capturing the entire sentence.</p>
+<p>Multi-line: <strong>A00-1004==>J93-2003,</strong><code>64-138</code></p>
+<p>Multi-locations: <strong>A00-1004==>P91-1022,</strong><code>16!204-205</code></p>
+<p>
+Examples:
+<div class="tabbable" style="margin-bottom: 18px;">
+<ul class="nav nav-tabs">
+<li class="active"><a href="#tab1" data-toggle="tab">Single-line</a></li>
+<li><a href="#tab2" data-toggle="tab">Multi-lines</a></li>
+<li><a href="#tab3" data-toggle="tab">Multi-locations</a></li>
+</ul>
+<div class="tab-content" style="padding-bottom: 9px; border-bottom: 1px solid #ddd;">
+<div class="tab-pane active" id="tab1">
+<pre class="prettyprint linenums">
+<u>This is the line I am interested because it contains the information referenced by the Paper A.</u> Then this line, also not so related, so I am not
+really interested in this...
+</pre>
+<p>Annotate as <code>1</code>.</p>
+<pre class="prettyprint linenums">
+this part is not really related to what I am looking for. <u>This is the line I am interested because it contains the information referenced by the 
+Paper A.</u> Then this line, also not so related, so I am not really interested in this
+</pre>
+<p>Annotate as <code>1-2</code>.</p>
+</div>
+<div class="tab-pane" id="tab2">
+<pre class="prettyprint linenums">
+this part of this paper, Paper B is not important. <u>This is the line I am interested because it contains the information referenced by the
+Paper A.</u> Then this line, also not important to me, so I am not really interested in this line. Then this line, also not important to
+me, so I am not really interested in this line. Then this line, also not important to me, so I am not really interested in this line.
+Then this line, also not important to me, so I am not really interested in this line. Then this line, also not important to me,
+so I am not really interested in this line. Then this line, also not important to me, so I am not really interested in this line. Then
+this line, also not important to me, so I am not really interested in this line. <u>Unfortunately I’m also interested in this line!</u> I’m
+not interested in this one
+</pre>
+<p>Annotate as <code>1-6</code>.</p>
+</div>
+<div class="tab-pane" id="tab3">
+<pre class="prettyprint linenums">
+...this part of this paper, Paper B is not really related. <u>This is the line I am interested because it contains the information referenced
+by the Paper A.</u> Then this line, also not so related, so I am not really interested in this...
+...this part not related...
+...this part not related...
+...this part not related...
+...this part not related...
+...this part not related...
+...this part not related...
+...this part not related...
+...this part not related...
+...this part not related...
+...this part not related...
+...this part not related...
+...this part not related...
+...this part not related...
+...this part not related...
+...this part not related...
+...this part not related...
+...this part not related...
+...this part not related...
+...this part not related...
+...this part not related...
+...this part not related...
+...this part not related...
+...this part not related...
+...this part not related...
+...this part not related...
+...this part not related...
+...this part not related...
+...this part not related...
+...this part not related...
+...this part not related...
+...this part not related...
+...this part not related...
+<u>This is the line I am interested because it contains the information referenced by the Paper A.</u> Then this line, also not so
+related, so I am not really interested in this...
+</pre>
+<p>Annotate as <code>1-35</code>.</p>
+</div>
+</div>
+</div>		
+</div>
+</div>
+</div>
+<p align="right">Go back to <a href="./home#Annotate">How To Annotate</a></p>
