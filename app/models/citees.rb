@@ -36,10 +36,6 @@ class Citees < ActiveRecord::Base
   def self.citing(citing)
     return "<h1>Hello World</h1>".html_safe
   end
-  
-  def self.testing()
-    return "Hello World"
-  end
 end
 # == Schema Information
 #

@@ -5,7 +5,7 @@
 </header>
 
 <%= form_tag(nil, :id => "citing", :class => "well") do %>
-<h1><%= Citees.testing %></h1>
+<h1><%= Citees.citing("E06-1047") %></h1>
 <% end %>
 
 <div style="position:relative; 
@@ -21,6 +21,8 @@
 </div>
 <% end %>
 </div>
+<br>
+<%= submit_tag("Submit Annotations", :id => "btnSubmit", :class => "btn btn-primary") %>
 
 <script>
 content_holder = document.getElementById('citedPaper');
