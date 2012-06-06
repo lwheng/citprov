@@ -39,6 +39,7 @@ class Citees < ActiveRecord::Base
   
   def self.testing()
     return "Hello World"
+  end
 end
 # == Schema Information
 #
