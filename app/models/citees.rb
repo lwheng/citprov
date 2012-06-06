@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class Citees < ActiveRecord::Base
   attr_accessible :cited, :citing
   def self.loaddata()
@@ -16,6 +18,23 @@ class Citees < ActiveRecord::Base
       newRecord.citing = values
       newRecord.save
     end
+  end
+  
+  def self.cited(cited)
+    # Fetch paper with id, cited
+    file = open("http://wing.comp.nus.edu.sg/~antho/#{cited[0]}/#{cited[0,3]}/#{cited}-pdfbox.txt","r")
+    data = file.read
+    # puts data
+    return data.gsub("\n", "<br>")
+  end
+  
+  def self.citing(citing)
+    return "<h1>Hello World</h1>".html_safe
+  end
+  
+  def self.get_citing_sent(cited, citing)
+    citings = Citees.find_by_cited(cited).citing
+    puts citings
   end
 end
 # == Schema Information
