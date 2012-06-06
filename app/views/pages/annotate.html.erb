@@ -16,6 +16,34 @@
  background-color:#ffffff;
  overflow:auto;">
 <%= form_tag(nil, :id => "cited", :class => "well") do %>
-<%= Citees.cited("A00-1002").html_safe %>
+<div id="citedPaper">
+<%= Citees.cited("A00-1002") %>
+</div>
 <% end %>
 </div>
+
+<script>
+content_holder = document.getElementById('citedPaper');
+for(var i=0;i<content_holder.children.length;i++) {
+  (function() {
+	   var d = content_holder.children[i];
+	   d.field = document.createElement("input");
+	   d.field.type = 'checkbox';
+	   d.field.name = 'testing';
+		 d.field.style.display = 'none' // This line sets checkbox to hidden
+	   d.appendChild(d.field);
+	   d.onclick = function() {
+		   if(!d.selected) {
+			   d.style.backgroundColor = '#ffffaa'
+			   d.selected = true;
+			   d.field.checked = 'true'
+		   }
+		   else {
+			   d.style.backgroundColor = '#f5f5f5'
+			   d.selected = false;
+			   d.field.checked = ''
+		   }
+	   }
+   })();
+}
+</script>

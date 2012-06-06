@@ -1,4 +1,5 @@
 require 'open-uri'
+require 'nokogiri'
 
 class Citees < ActiveRecord::Base
   attr_accessible :cited, :citing
@@ -23,9 +24,13 @@ class Citees < ActiveRecord::Base
   def self.cited(cited)
     # Fetch paper with id, cited
     file = open("http://wing.comp.nus.edu.sg/~antho/#{cited[0]}/#{cited[0,3]}/#{cited}-pdfbox.txt","r")
-    data = file.read
-    # puts data
-    return data.gsub("\n", "<br>")
+    data = ""
+    id = 1
+    while (line = file.gets)
+      data = "#{data}<div id=\"line#{id}\">#{line.gsub("\n","")}</div>#{"\n"}"
+      id += 1
+    end
+    return data.html_safe
   end
   
   def self.citing(citing)
