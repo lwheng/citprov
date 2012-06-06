@@ -10,6 +10,7 @@ Citprov::Application.routes.draw do
   match '/download' => 'pages#download', :as => "download"
   match '/upload' => 'annotations#upload', :as => "upload"
   match '/upload_data' => 'annotations#upload_data', :as => "upload_data"
+  match '/annotate_data' => 'pages#annotate_data', :as => "annotate_data"
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

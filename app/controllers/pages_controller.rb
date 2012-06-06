@@ -38,5 +38,12 @@ class PagesController < ApplicationController
     @title = "Upload"
     @upload = "active"
   end
+  
+  def annotate_data
+    selection = params[:selection]
+    puts selection
+    
+    redirect_to(annotate_path)
+  end
 
 end
