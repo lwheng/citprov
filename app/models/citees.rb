@@ -1,4 +1,5 @@
 require 'open-uri'
+require 'nokogiri'
 
 class Citees < ActiveRecord::Base
   attr_accessible :cited, :citing
@@ -20,9 +21,22 @@ class Citees < ActiveRecord::Base
       newRecord.save
     end
   end
+  
+  def self.citing(arg)
+    info = arg.split("==>")
+    citing = info[0]
+    cited = info[1]
+    
+    file = open("http://wing.comp.nus.edu.sg/~antho/#{citing[0]}/#{citing[0,3]}/#{citing}-parscit.xml","r")
+    data = file.read
+    puts data
+    return "<h1>Hello World</h1>".html_safe
+  end
 
-  def self.cited(cited)
+  def self.cited(arg)
     # Fetch paper with id, cited
+    cited = arg.split("==>")[1]
+    
     file = open("http://wing.comp.nus.edu.sg/~antho/#{cited[0]}/#{cited[0,3]}/#{cited}-pdfbox.txt","r")
     data = ""
     id = 1
@@ -31,10 +45,6 @@ class Citees < ActiveRecord::Base
       id += 1
     end
     return data.html_safe
-  end
-
-  def self.citing(citing)
-    return "<h1>Hello World</h1>".html_safe
   end
 end
 # == Schema Information

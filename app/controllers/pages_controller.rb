@@ -41,9 +41,9 @@ class PagesController < ApplicationController
   
   def annotate_data
     selection = params[:selection]
-    puts selection
+    @annotate_data_test = selection
     
-    redirect_to(annotate_path)
+    # redirect_to(annotate_path)
   end
 
 end
