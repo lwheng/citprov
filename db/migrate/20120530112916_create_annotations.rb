@@ -1,5 +1,5 @@
 class CreateAnnotations < ActiveRecord::Migration
-  def up
+  def change
     create_table :annotations do |t|
       t.string :cite_key
       t.text :user
