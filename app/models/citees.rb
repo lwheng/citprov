@@ -1,5 +1,5 @@
 require 'open-uri'
-require 'nokogiri'
+# require 'nokogiri'
 
 class Citees < ActiveRecord::Base
   attr_accessible :cited, :citing
