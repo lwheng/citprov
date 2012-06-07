@@ -1,8 +1,17 @@
 require 'open-uri'
-# require 'nokogiri'
+require "rexml/document"
+include REXML
 
 class Citees < ActiveRecord::Base
   attr_accessible :cited, :citing
+  
+  def self.testing()
+    puts "hello"
+    string = "<mydoc attr='ok'><first>test</first><second>test again</second></mydoc>"
+    doc = Document.new string
+    root = doc.root
+    puts root.elements["first"].text
+  end
   
   def self.loaddata()
     # This method should only be ran once
