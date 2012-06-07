@@ -39,7 +39,17 @@ class Citees < ActiveRecord::Base
     
     file = open("http://wing.comp.nus.edu.sg/~antho/#{citing[0]}/#{citing[0,3]}/#{citing}-parscit.xml","r")
     data = file.read
-    puts data
+    root = (Document.new data).root
+    citationList = root.elements["algorithm"].elements["citationList"]
+    citationList.elements.each do |v|
+      if v.elements["contexts"]
+        # Has context
+        puts v.elements["contexts"].elements["context"]
+      else
+        # Has no context
+        puts "No context"
+      end
+    end
     return "<h1>Hello World</h1>".html_safe
   end
 
