@@ -11,6 +11,7 @@ class Citees < ActiveRecord::Base
     doc = Document.new string
     root = doc.root
     puts root.elements["first"].text
+    return root.elements["first"].text
   end
   
   def self.loaddata()
