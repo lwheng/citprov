@@ -1,7 +1,7 @@
 <header class="jumbotron subhead" id="overview">
 	<h1>Annotate <small>(Work in Progress)</small></h1>
 	<p class="lead">We are working on an easier and more convenient way to annotate. Please come back again!</p>
-	<p>Demo only: You're looking at W03-0415==>P99-1016</p>
+	<p>Demo only: You're looking at <%= @first_key %></p>
 </header>
 
 <div class="row">
@@ -9,12 +9,12 @@
 		<h3>Citing Sentence / Context</h3>
 		<%= form_tag(nil, :id => "citing", :class => "well") do %>
 		In Section 4, we show how correctly extracted relationships can be used as “seed-cases” to extract several more relationships, thus improving recall; this work shares some similarities with that of Caraballo (1999). In Section 5 we show that combining the techniques of Section 3 and Section 4 improves both precision and recall. Section 6 demonstrates that 1Another possible view is that “hyponymy” should only re
-		<!-- <%= Citees.citing("W03-0415==>P99-1016") %> -->
+		<%= Citees.citing(@first_key) %>
 		<% end %>
 	</div>
 	
 	<div class="span8">
-		<h3>Cited Paper <small>(See original paper in PDF <%= link_to "here", Citees.cited_pdf_link("W03-0415==>P99-1016"), :target => "_blank" %>)</small></h3>
+		<h3>Cited Paper <small>(See original paper in PDF <%= link_to "here", Citees.cited_pdf_link(@first_key), :target => "_blank" %>)</small></h3>
 		<%= form_tag(annotate_data_path, :id => "cited", :class => "well") do %>
 		<div id="citedPaper" style="position:relative; 
 		 left:0px;
@@ -23,12 +23,15 @@
 		 height:300px;
 		 background-color:#ffffff;
 		 overflow:auto;">
-		<%= Citees.cited("W03-0415==>P99-1016") %>
+		<%= Citees.cited(@first_key) %>
 		</div>
 		<br>
 		<%= radio_button("type", "choice", "General") %> General
 		<%= radio_button("type", "choice", "Specific", :checked => "checked") %> Specific
 		<%= radio_button("type", "choice", "Undetermined") %> Undetermined
+		<br>
+		<br>
+		<%= label_tag("user_label", "Enter your NUS matric or MTurk ID")%><%= text_field_tag("username", nil, :placeholder => "Enter your Matric/ID here...")%>
 		<br>
 		<br>
 		<%= submit_tag("Submit Annotations", :id => "btnSubmit", :class => "btn btn-primary") %>

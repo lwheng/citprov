@@ -64,21 +64,16 @@ class Annotation < ActiveRecord::Base
     def self.get_first()
       # Not the conventional first record.
       # Gets the first record that is nearest to getting 3 annotators
-      
-      # Try with users_count = 2
+      # Returns the cite_key
+    
       result = self.find_by_users_count(2)
-      if result
-        # has results
-      else
-        # no results for users_count = 2
+      if result.nil?
         result = self.find_by_users_count(1)
-        if result
-          # has results
-        else
-          # no results for users_count = 1
-          result = self.find_by_users_count(0).first
+        if result.nil?
+          result = self.find_by_users_count(0)
         end
       end
+      return result.cite_key
     end
 end
 # == Schema Information
