@@ -182,15 +182,6 @@ class Citees < ActiveRecord::Base
     end
     
     return display.html_safe
-    
-    # file = open("http://wing.comp.nus.edu.sg/~antho/#{cited[0]}/#{cited[0,3]}/#{cited}-pdfbox.txt","r")
-    # data = ""
-    # id = 1
-    # while (line = file.gets)
-    #   data = "#{data}<div id=\"line#{id}\">#{line.gsub("\n","")}</div>#{"\n"}"
-    #   id += 1
-    # end
-    # return data.html_safe
   end
   
   def self.cited_pdf_link(arg)
