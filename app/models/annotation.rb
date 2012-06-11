@@ -1,9 +1,30 @@
 class Annotation < ActiveRecord::Base
-    attr_accessible :cite_key, :user
+    attr_accessible :cite_key, :user, :users_count
     serialize :user, Hash
 
     validates :cite_key, presence: true
-    validates :user, presence: true
+    # validates :user, presence: true # commented away to allow initialisation
+    validates :users_count, presence: true
+    
+    def self.loaddata()
+      # This method should only be ran once
+      # Loads all cite keys into model
+      
+      # Read cite keys from annotationsMaster.txt
+      # And that add these keys into model
+      file = File.open("#{Rails.root}/app/assets/data/annotationsMaster.txt", "r")
+      while (line = file.gets)
+        cite_key =  line.split(",")[0]
+        
+        # Check model whether cite_key exists. If not, then save to model accordingly
+        # Set users_count to zero by default
+        unless self.find_by_cite_key(cite_key)
+          newRecord = self.new(:cite_key => cite_key)
+          newRecord.users_count = 0
+          newRecord.save
+        end
+      end
+    end
 
     def self.parse(user, annotation)
       # Parses annotation and returns a hash
@@ -30,6 +51,34 @@ class Annotation < ActiveRecord::Base
         end
       end
       print
+    end
+    
+    def self.users_count()
+      # An administrative method used to sort out the no. of annotators for each record
+      self.all.each do |record|
+        record.users_count = record.user.keys.size
+        record.save
+      end
+    end
+    
+    def self.get_first()
+      # Not the conventional first record.
+      # Gets the first record that is nearest to getting 3 annotators
+      
+      # Try with users_count = 2
+      result = self.find_by_users_count(2)
+      if result
+        # has results
+      else
+        # no results for users_count = 2
+        result = self.find_by_users_count(1)
+        if result
+          # has results
+        else
+          # no results for users_count = 1
+          result = self.find_by_users_count(0).first
+        end
+      end
     end
 end
 # == Schema Information
