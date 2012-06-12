@@ -167,11 +167,11 @@ class Citees < ActiveRecord::Base
             end
           end
         when "sectionHeader"
-          display = "#{display}<h4>#{tag.text}</h4>"
+          display = "#{display}<div><h4>#{tag.text}</h4></div>"
         when "subsectionHeader"
-          display = "#{display}<h4>#{tag.text}</h4>"
+          display = "#{display}<div><h4>#{tag.text}</h4></div>"
         when "subsubsectionHeader"
-          display = "#{display}<h4>#{tag.text}</h4>"
+          display = "#{display}<div><h4>#{tag.text}</h4></div>"
         when "table"
           table = tag.text
           table_lines = table.split("\n")
@@ -190,8 +190,35 @@ class Citees < ActiveRecord::Base
 
       return display.html_safe
     rescue => error
-      puts "Error caught!!!"
-      return "<h3>No *-parscit-section.xml. Text only, no nice formatting</h3>".html_safe
+      # No xml format found. Revert to using txt format
+      # Attempt to do some formatting using regex to match section headers
+      file = open("http://wing.comp.nus.edu.sg/~antho/#{cited[0]}/#{cited[0,3]}/#{cited}-pdfbox.txt","r")
+      display = ""
+      title = true # assumes first line is the title
+      while (line = file.gets)
+        regexSection = /([0-9]) ([A-Z][a-z]+$)/
+        regexAbstractAcknowledgeReference = /(^[A-Z][a-z]+$)/
+        regex = regexSection.match(line)
+        if regex
+          # matched a numbered section
+          display = "#{display}<div><h4>#{line}</h4></div>"
+        else
+          regex = regexAbstractAcknowledgeReference.match(line)
+          if regex
+            # matched un-numbered section
+            display = "#{display}<div><h4>#{line}</h4></div>"
+          else
+            if title
+              display = "#{display}<div><h3>#{line}</h3></div>"
+              title = nil
+            else
+              display = "#{display}<div>#{line}</div>"
+            end
+          end
+        end
+      end
+      # return "<h3>Goes here. No *-parscit-section.xml. Text only, no nice formatting</h3>".html_safe
+      return display.html_safe
     end
   end
 
