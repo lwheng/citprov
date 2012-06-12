@@ -30,8 +30,6 @@ class Citees < ActiveRecord::Base
     citing = info[0]
     cited = info[1]
     
-    puts "HERE   #{Levenshtein.distance('hello', 'hell')}"
-    
     titleCited = ""
     booktitleCited = ""
     # Get the title of the cited paper
@@ -71,17 +69,31 @@ class Citees < ActiveRecord::Base
         end
       end
     end
-    
-    puts titleCited
 
     # Get citations's context and title
+    citationCiting = nil
+    distance = 314159265358979323846
+    display = ""
     begin
        file = open("http://wing.comp.nus.edu.sg/~antho/#{citing[0]}/#{citing[0,3]}/#{citing}-parscit.xml","r")
        data = file.read
        root = (Document.new data).root
        citationList = root.elements["algorithm"].elements["citationList"]
        citations = citationList.elements
-       return "<h1>Context goes here</h1>".html_safe
+       citations.each do |v|
+         if title = v.elements["title"]
+           check = Levenshtein.distance(titleCited, title.text)
+           if check < distance
+             citationCiting = v
+             distance = check
+           end
+         end
+       end
+       contexts = citationCiting.elements["contexts"]
+       contexts.elements.each do |v|
+         display = "#{display}<div>#{v.text}</div>"
+       end
+       return display.html_safe
      rescue => error
        puts "Error!!!"
        puts error.backtrace.join("\n")

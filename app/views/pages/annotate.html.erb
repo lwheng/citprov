@@ -8,7 +8,6 @@
 	<div class="span4">
 		<h3>Citing Paper / Context <small>(See <%= link_to "PDF", Citees.citing_pdf_link(@first_key), :target => "_blank" %>)</small></h3>
 		<%= form_tag(nil, :id => "citing", :class => "well") do %>
-		In Section 4, we show how correctly extracted relationships can be used as “seed-cases” to extract several more relationships, thus improving recall; this work shares some similarities with that of Caraballo (1999). In Section 5 we show that combining the techniques of Section 3 and Section 4 improves both precision and recall. Section 6 demonstrates that 1Another possible view is that “hyponymy” should only re
 		<%= Citees.citing(@first_key) %>
 		<% end %>
 	</div>
