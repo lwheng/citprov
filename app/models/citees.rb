@@ -1,6 +1,8 @@
 require 'open-uri'
-require "rexml/document"
+require 'rexml/document'
+require 'text'
 include REXML
+include Text
 
 class Citees < ActiveRecord::Base
   attr_accessible :cited, :citing
@@ -27,26 +29,63 @@ class Citees < ActiveRecord::Base
     info = arg.split("==>")
     citing = info[0]
     cited = info[1]
-
+    
+    puts "HERE   #{Levenshtein.distance('hello', 'hell')}"
+    
+    titleCited = ""
+    booktitleCited = ""
+    # Get the title of the cited paper
+    # Try bib file first because the file size smallest
     begin
-      file = open("http://wing.comp.nus.edu.sg/~antho/#{citing[0]}/#{citing[0,3]}/#{citing}-parscit.xml","r")
-      data = file.read
-      root = (Document.new data).root
-      citationList = root.elements["algorithm"].elements["citationList"]
-      citationList.elements.each do |v|
-        if v.elements["contexts"]
-          # Has context
-          puts v.elements["contexts"].elements["context"]
-        else
-          # Has no context
-          puts "No context"
+      file = open("http://wing.comp.nus.edu.sg/~antho/#{cited[0]}/#{cited[0,3]}/#{cited}.bib","r")
+      regexTitle = /(^title)\s*=\s*\{(.*)\}/
+      regexBookTitle = /(^booktitle)\s*=\s*\{(.*)\}/
+      while (line = file.gets)
+        line = line.strip
+        if match = regexTitle.match(line)
+          titleCited = match[2]
+        elsif match = regexBookTitle.match(line)
+          booktitleCited = match[2]
         end
       end
-      return "<h1>Context goes here</h1>".html_safe
     rescue => error
-      puts "Error!!!"
-      puts error.backtrace.join("\n")
+      # no bib file. try seersuite file
+      begin
+        file = open("http://wing.comp.nus.edu.sg/~antho/#{cited[0]}/#{cited[0,3]}/#{cited}-pdfbox-seersuite.txt","r")
+        data = file.read
+        root = (Document.new data).root
+        content = root.elements
+        if content["title"]
+          titleCited = content["title"].text
+        end
+      rescue => error1
+        # no seersuit file either. try -final.xml
+        begin
+          file = open("http://wing.comp.nus.edu.sg/~antho/#{cited[0]}/#{cited[0,3]}/#{cited}-final.xml","r")
+          data = file.read
+          root = (Document.new data).root
+          title = root.elements["teiHeader"].elements["fileDesc"].elements["titleStmt"].elements["title"]
+          titleCited = title.text
+        rescue => error2
+          puts "No title!"
+        end
+      end
     end
+    
+    puts titleCited
+
+    # Get citations's context and title
+    begin
+       file = open("http://wing.comp.nus.edu.sg/~antho/#{citing[0]}/#{citing[0,3]}/#{citing}-parscit.xml","r")
+       data = file.read
+       root = (Document.new data).root
+       citationList = root.elements["algorithm"].elements["citationList"]
+       citations = citationList.elements
+       return "<h1>Context goes here</h1>".html_safe
+     rescue => error
+       puts "Error!!!"
+       puts error.backtrace.join("\n")
+     end
   end
 
   def self.cited(arg)
@@ -184,10 +223,8 @@ class Citees < ActiveRecord::Base
           display = "#{display}<div><i><b>#{tag.text}</b></i></div>"
         when "title"
           display = "#{display}<div><h3>#{tag.text}</h3></div>"
-
         end
       end
-
       return display.html_safe
     rescue => error
       # No xml format found. Revert to using txt format
@@ -198,26 +235,21 @@ class Citees < ActiveRecord::Base
       while (line = file.gets)
         regexSection = /([0-9]) ([A-Z][a-z]+$)/
         regexAbstractAcknowledgeReference = /(^[A-Z][a-z]+$)/
-        regex = regexSection.match(line)
-        if regex
+        if match = regexSection.match(line)
           # matched a numbered section
           display = "#{display}<div><h4>#{line}</h4></div>"
+        elsif match = regexAbstractAcknowledgeReference.match(line)
+          # matched un-numbered section
+          display = "#{display}<div><h4>#{line}</h4></div>"
         else
-          regex = regexAbstractAcknowledgeReference.match(line)
-          if regex
-            # matched un-numbered section
-            display = "#{display}<div><h4>#{line}</h4></div>"
+          if title
+            display = "#{display}<div><h3>#{line}</h3></div>"
+            title = nil
           else
-            if title
-              display = "#{display}<div><h3>#{line}</h3></div>"
-              title = nil
-            else
-              display = "#{display}<div>#{line}</div>"
-            end
+            display = "#{display}<div>#{line}</div>"
           end
         end
       end
-      # return "<h3>Goes here. No *-parscit-section.xml. Text only, no nice formatting</h3>".html_safe
       return display.html_safe
     end
   end
@@ -225,7 +257,11 @@ class Citees < ActiveRecord::Base
   def self.cited_pdf_link(arg)
     cited = arg.split("==>")[1]
     return "http://wing.comp.nus.edu.sg/~antho/#{cited[0]}/#{cited[0,3]}/#{cited}.pdf"
-
+  end
+  
+  def self.citing_pdf_link(arg)
+    citing = arg.split("==>")[0]
+    return "http://wing.comp.nus.edu.sg/~antho/#{citing[0]}/#{citing[0,3]}/#{citing}.pdf"
   end
 end
 # == Schema Information

@@ -1,12 +1,12 @@
 <header class="jumbotron subhead" id="overview">
 	<h1>Annotate <small>(Work in Progress)</small></h1>
 	<p class="lead">We are working on an easier and more convenient way to annotate. Please come back again!</p>
-	<p>Demo only: You're looking at <%= @first_key %></p>
+	<p>Demo only: You're looking at <b><%= @first_key %></b></p>
 </header>
 
 <div class="row">
 	<div class="span4">
-		<h3>Citing Sentence / Context</h3>
+		<h3>Citing Paper / Context <small>(See <%= link_to "PDF", Citees.citing_pdf_link(@first_key), :target => "_blank" %>)</small></h3>
 		<%= form_tag(nil, :id => "citing", :class => "well") do %>
 		In Section 4, we show how correctly extracted relationships can be used as “seed-cases” to extract several more relationships, thus improving recall; this work shares some similarities with that of Caraballo (1999). In Section 5 we show that combining the techniques of Section 3 and Section 4 improves both precision and recall. Section 6 demonstrates that 1Another possible view is that “hyponymy” should only re
 		<%= Citees.citing(@first_key) %>
@@ -14,7 +14,7 @@
 	</div>
 	
 	<div class="span8">
-		<h3>Cited Paper <small>(See original paper in PDF <%= link_to "here", Citees.cited_pdf_link(@first_key), :target => "_blank" %>)</small></h3>
+		<h3>Cited Paper <small>(See <%= link_to "PDF", Citees.cited_pdf_link(@first_key), :target => "_blank" %>)</small></h3>
 		<%= form_tag(annotate_data_path, :id => "cited", :class => "well") do %>
 		<div id="citedPaper" style="position:relative; 
 		 left:0px;
