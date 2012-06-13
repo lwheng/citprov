@@ -284,9 +284,8 @@ class Citees < ActiveRecord::Base
     citing = info[0]
     cited = info[1]
     
-    # results = self.find_by_cited(cited)
-    # citeesStr = results.citing
-    citeesStr = self.find_by_cited(cited).citing
+    results = self.find_by_cited(cited)
+    citeesStr = results.citing
     citees = citeesStr.split("!")
     return citees
   end

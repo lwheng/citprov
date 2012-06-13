@@ -40,7 +40,7 @@ class PagesController < ApplicationController
 
     @first_key = Annotation.get_first
     @cited = @first_key.split("==>")[1]
-    @citees = Citees.get_citees(@first_key)
+    # @citees = Citees.get_citees(@first_key)
   end
   
   def annotate_submit
