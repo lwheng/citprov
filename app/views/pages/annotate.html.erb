@@ -5,7 +5,8 @@
 		<% if signed_in? %>
 			<h3>Hi <%= current_user.username %>,</h3>
 		<% end %>
-		You're looking at <strong><%= @current_key %></strong><br>
+		<!-- You're looking at <strong><%= @current_key %></strong><br> -->
+		You're looking at <strong><%= session[:current_cite].cite_key %></strong><br>
 	</p>
 </header>
 
@@ -20,7 +21,6 @@
 	<div class="span8">
 		<h3>Cited Paper <small>(See <%= link_to "#{@current_key.split("==>")[1]}.pdf", Citees.cited_pdf_link(@current_key), :target => "_blank" %>)</small></h3>
 		<%= form_tag(annotate_submit_path, :id => "cited", :class => "well") do %>
-		<input type="hidden" id="current_key" name="current_key" value="<%= @current_key %>">
 		<div id="citedPaper" style="position:relative; 
 		 left:0px;
 		 top:0px;
