@@ -1,20 +1,23 @@
 <header class="jumbotron subhead" id="overview">
 	<h1>Annotate <small>(Work in Progress)</small></h1>
 	<p class="lead">We are working on an easier and more convenient way to annotate. Please come back again!</p>
-	<p>Demo only: You're looking at <b><%= @first_key %></b></p>
+	<p>
+		<strong><%= @cited %></strong> has a total of <strong><%= @citees.size %></strong> papers citing or making reference to it.<br>
+		You're looking at <strong><%= @first_key %></strong><br>
+	</p>
 </header>
 
 <div class="row">
 	<div class="span4">
-		<h3>Citing Paper / Context <small>(See <%= link_to "PDF", Citees.citing_pdf_link(@first_key), :target => "_blank" %>)</small></h3>
+		<h3>Citing Paper / Context <small>(See <%= link_to "#{@first_key.split("==>")[0]}.pdf", Citees.citing_pdf_link(@first_key), :target => "_blank" %>)</small></h3>
 		<%= form_tag(nil, :id => "citing", :class => "well") do %>
 		<%= Citees.citing(@first_key) %>
 		<% end %>
 	</div>
 	
 	<div class="span8">
-		<h3>Cited Paper <small>(See <%= link_to "PDF", Citees.cited_pdf_link(@first_key), :target => "_blank" %>)</small></h3>
-		<%= form_tag(annotate_data_path, :id => "cited", :class => "well") do %>
+		<h3>Cited Paper <small>(See <%= link_to "#{@first_key.split("==>")[1]}.pdf", Citees.cited_pdf_link(@first_key), :target => "_blank" %>)</small></h3>
+		<%= form_tag(annotate_submit_path, :id => "cited", :class => "well") do %>
 		<div id="citedPaper" style="position:relative; 
 		 left:0px;
 		 top:0px;
@@ -28,9 +31,6 @@
 		<%= radio_button("type", "choice", "General") %> General
 		<%= radio_button("type", "choice", "Specific", :checked => "checked") %> Specific
 		<%= radio_button("type", "choice", "Undetermined") %> Undetermined
-		<br>
-		<br>
-		<%= label_tag("user_label", "Enter your NUS matric or MTurk ID")%><%= text_field_tag("username", nil, :placeholder => "Enter your Matric/ID here...")%>
 		<br>
 		<br>
 		<%= submit_tag("Submit Annotations", :id => "btnSubmit", :class => "btn btn-primary") %>

@@ -91,7 +91,10 @@ class Citees < ActiveRecord::Base
        end
        contexts = citationCiting.elements["contexts"]
        contexts.elements.each do |v|
-         display = "#{display}<div>#{v.text}</div>"
+         context = v.text
+         citStr = v.attributes["citStr"]
+         context = context.gsub(citStr, "<b>#{citStr}</b>")
+         display = "#{display}<div>.....#{context}.....</div><br>"
        end
        return display.html_safe
      rescue => error
@@ -274,6 +277,17 @@ class Citees < ActiveRecord::Base
   def self.citing_pdf_link(arg)
     citing = arg.split("==>")[0]
     return "http://wing.comp.nus.edu.sg/~antho/#{citing[0]}/#{citing[0,3]}/#{citing}.pdf"
+  end
+  
+  def self.get_citees(arg)
+    info = arg.split("==>")
+    citing = info[0]
+    cited = info[1]
+    
+    results = self.find_by_cited(cited)
+    citeesStr = results.citing
+    citees = citeesStr.split("!")
+    return citees
   end
 end
 # == Schema Information

@@ -65,25 +65,37 @@ class Annotation < ActiveRecord::Base
       # Not the conventional first record.
       # Gets the first record that is nearest to getting 3 annotators
       # Returns the cite_key
-    
-      result = self.find_by_users_count(2)
-      if result.nil?
-        result = self.find_by_users_count(1)
-        if result.nil?
-          result = self.find_by_users_count(0)
-        end
+      if result = self.find_by_users_count(2)
+        return result.cite_key
+      elsif result = self.find_by_users_count(1)
+        return result.cite_key
+      elsif result = self.find_by_users_count(0)
+        return result.cite_key
       end
-      return result.cite_key
+    end
+    
+    def self.get_citees(arg)
+      # Gets all the citees that cites a cited paper
+      # Returns a list of cite_keys
+      cited = arg.split("==>")[1]
+      results = self.find(:all, :conditions => ["cite_key LIKE ? AND users_count <> ?", "\%==>#{cited}", "3"], :order =>
+      "users_count DESC")
+      citees = []
+      results.each do |v|
+        citees.concat([v.cite_key])
+      end
+      return citees
     end
 end
 # == Schema Information
 #
 # Table name: annotations
 #
-#  id         :integer         not null, primary key
-#  cite_key   :string(255)
-#  user       :text
-#  created_at :datetime
-#  updated_at :datetime
+#  id          :integer         not null, primary key
+#  cite_key    :string(255)
+#  user        :text
+#  created_at  :datetime
+#  updated_at  :datetime
+#  users_count :integer
 #
 

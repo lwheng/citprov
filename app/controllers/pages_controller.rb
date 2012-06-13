@@ -37,17 +37,19 @@ class PagesController < ApplicationController
   def annotate
     @title = "Annotate"
     @annotate = "active"
-    
+
     @first_key = Annotation.get_first
+    @cited = @first_key.split("==>")[1]
+    @citees = Citees.get_citees(@first_key)
   end
   
-  def annotate_data
+  def annotate_submit
     selection = params[:selection]
     type = params[:type]
     username = params[:username]
-    @annotate_data_selection = selection
-    @annotate_data_type = type
-    @annotate_data_username = username
+    @annotate_submit_selection = selection
+    @annotate_submit_type = type
+    @annotate_submit_username = username
     
     # redirect_to(annotate_path)
   end
