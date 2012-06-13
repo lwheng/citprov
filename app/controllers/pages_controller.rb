@@ -38,7 +38,7 @@ class PagesController < ApplicationController
     if signed_in?
       @title = "Annotate"
       @annotate = "active"
-      
+
       if session[:current_cite]
         # working currently
         # check whether no. of cites = 3
@@ -85,22 +85,44 @@ class PagesController < ApplicationController
         session[:current_cite] = Annotation.get_first
         @current_key = session[:current_cite].cite_key
       end
-
-      # @current_key = Annotation.get_first
-      # @current_cited = @current_key.split("==>")[1]
-      # @citees = Annotation.get_citees(@current_cited)
     else
       redirect_to (annotate_start_path)
     end
   end
 
   def annotate_submit
+    session[:annotate_error] = nil
+
+    # Retrieve from params
     selection = params[:selection]
     type = params[:type]
-    @annotate_submit_selection = selection
-    @annotate_submit_type = type
 
-    # redirect_to(annotate_path)
+    annotateType = ""
+    specificDetails = ""
+    case type["choice"]
+    when "General"
+      annotateType = "-"
+    when "Specific"
+      if selection.nil?
+        session[:annotate_error] = "<div class='alert alert-error'><strong>Error!</strong></div>".html_safe
+        redirect_to annotate_work_path
+      end
+      selection.keys.each do |line|
+        specificDetails = "#{specificDetails}#{line}!"
+      end
+    when "Undetermined"
+      annotateType = "?"
+    end
+
+    annotation = "#{session[:current_cite].cite_key},#{annotateType}#{specificDetails}"
+    
+    record = Annotation.find_by_cite_key(session[:current_cite].cite_key)
+    record.user[current_user.username] = annotation
+    record.users_count = record.users_count + 1
+    @outcome = record.save
+
+    # @annotate_submit_annotation = annotation
+    # redirect_to(annotate_work_path)
   end
 
 end

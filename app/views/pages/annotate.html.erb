@@ -36,6 +36,9 @@
 		<%= radio_button("type", "choice", "Undetermined") %> Undetermined
 		<br>
 		<br>
+		<% if session[:annotate_error] %>
+			<%= session[:annotate_error] %>
+		<% end %>
 		<%= submit_tag("Submit Annotations", :id => "btnSubmit", :class => "btn btn-primary") %>
 		<% end %>
 	</div>
