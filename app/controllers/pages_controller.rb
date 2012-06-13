@@ -18,22 +18,22 @@ class PagesController < ApplicationController
     @title = "Contact"
     @contact = "active"
   end
-  
+
   def classification
     @title = "Classification"
     @classification = "active"
   end
-  
+
   def download
     @title = "Download"
     @download = "active"
   end
-  
+
   def upload
     @title = "Upload"
     @upload = "active"
   end
-  
+
   def annotate
     @title = "Annotate"
     @annotate = "active"
@@ -42,15 +42,15 @@ class PagesController < ApplicationController
     @cited = @first_key.split("==>")[1]
     # @citees = Citees.get_citees(@first_key)
   end
-  
+
   def annotate_submit
+    cookies.delete(:username)
     selection = params[:selection]
     type = params[:type]
     username = params[:username]
     @annotate_submit_selection = selection
     @annotate_submit_type = type
-    @annotate_submit_username = username
-    
+
     # redirect_to(annotate_path)
   end
 

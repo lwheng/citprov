@@ -1,0 +1,14 @@
+<header class="jumbotron subhead" id="overview">
+	<h1>Annotate <small>(Work in Progress)</small></h1>
+	<p class="lead">We are working on an easier and more convenient way to annotate. Please come back again!</p>
+</header>
+
+<div class="row">
+	<div class="span4">
+		Enter your NUS matric or MTurk ID to begin:
+		<%= form_tag(nil, :id => "cited", :class => "well") do %>
+			<%= text_field_tag("username", nil, :placeholder=>"Enter your matric or ID") %><br>
+			<%= submit_tag("Begin", :id => "btnBegin", :class => "btn btn-primary") %>
+		<% end %>
+	</div>
+</div>
