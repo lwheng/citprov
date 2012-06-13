@@ -2,6 +2,9 @@
 	<h1>Annotate <small>(Work in Progress)</small></h1>
 	<p class="lead">We are working on an easier and more convenient way to annotate. Please come back again!</p>
 	<p>
+		<% if signed_in? %>
+			<h3>Hi <%= current_user.username %>,</h3>
+		<% end %>
 		You're looking at <strong><%= @current_key %></strong><br>
 	</p>
 </header>

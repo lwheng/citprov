@@ -18,7 +18,6 @@ Citprov::Application.routes.draw do
   match '/annotate/create' => 'sessions#create', :as => "annotate_create"
   match '/annotate/end' => 'sessions#destroy', :as => "annotate_end"
   match '/annotate/work' => 'pages#annotate', :as => "annotate_work"
-  match '/annotate/user' => 'users#user', :as => "annotate_user"
   match '/annotate/submit' => 'pages#annotate_submit', :as => "annotate_submit"
   
   # The priority is based upon order of creation:

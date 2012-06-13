@@ -28,6 +28,9 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
+					<% if signed_in? %>
+						<a class="brand" href="<%= annotate_end_path %>"><span class="muted">Quit Annotating</span></a>
+					<% end %>
           <div class="container nav-collapse">
             <ul class="nav">
 							<li class="<%= @home %>"><%= link_to "Main", home_path  %></li>
@@ -46,8 +49,11 @@
 
     <div class="container">
       <div class="content">
+				<% flash.each do |key, value| %>
+					<div class="alert alert-<%= key %>"><strong><%= value %></strong></div>
+				<% end %>
 				<%= yield %>
-				<%= debug(params) if Rails.env.development? %>
+				<!-- <%= debug(params) if Rails.env.development? %> -->
       </div><!--/content-->
 
       <footer class="footer">
