@@ -38,18 +38,19 @@ class PagesController < ApplicationController
     @title = "Annotate"
     @annotate = "active"
 
-    @first_key = Annotation.get_first
-    @cited = @first_key.split("==>")[1]
+    @current_key = Annotation.get_first
+    @cited = @current_key.split("==>")[1]
     # @citees = Citees.get_citees(@first_key)
   end
 
   def annotate_submit
-    cookies.delete(:username)
     selection = params[:selection]
     type = params[:type]
     username = params[:username]
+    current_key = params[:current_key]
     @annotate_submit_selection = selection
     @annotate_submit_type = type
+    @annotate_submit_current_key = current_key
 
     # redirect_to(annotate_path)
   end

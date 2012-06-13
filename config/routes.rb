@@ -1,4 +1,7 @@
 Citprov::Application.routes.draw do
+  
+  resources :sessions, :only => [:new, :create, :destroy]
+
   root :to => 'pages#home', :as => "home"
   match '/home' => 'pages#home', :as => "home"
   match '/citation' => 'pages#citation', :as => "citation"
@@ -8,7 +11,14 @@ Citprov::Application.routes.draw do
   match '/download' => 'pages#download', :as => "download"
   match '/upload' => 'annotations#upload', :as => "upload"
   match '/upload_data' => 'annotations#upload_data', :as => "upload_data"
-  match '/annotate' => 'pages#annotate', :as => "annotate"
+  # match '/annotate' => 'pages#annotate', :as => "annotate"
+  # match '/annotate/submit' => 'pages#annotate_submit', :as => "annotate_submit"
+  
+  match '/annotate/start' => 'sessions#new', :as => "annotate_start"
+  match '/annotate/create' => 'sessions#create', :as => "annotate_create"
+  match '/annotate/end' => 'sessions#destroy', :as => "annotate_end"
+  match '/annotate/work' => 'pages#annotate', :as => "annotate_work"
+  match '/annotate/user' => 'users#user', :as => "annotate_user"
   match '/annotate/submit' => 'pages#annotate_submit', :as => "annotate_submit"
   
   # The priority is based upon order of creation:

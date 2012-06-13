@@ -1,0 +1,25 @@
+<header class="jumbotron subhead" id="overview">
+	<h1>Annotate <small>(Work in Progress)</small></h1>
+	<p class="lead">We are working on an easier and more convenient way to annotate. Please come back again!</p>
+</header>
+
+<!-- <div class="row">
+	<div class="span5">
+		Enter your NUS matric or MTurk ID to begin:
+		<%= form_tag(annotate_work_path, :id => "cited", :class => "well") do %>
+			<%= text_field_tag("username", nil, :placeholder=>"Enter your matric or ID", :class => "span4") %><br>
+			<%= submit_tag("Begin", :id => "btnBegin", :class => "btn btn-primary") %>
+		<% end %>
+	</div>
+</div> -->
+
+<div class="row">
+	<div class="span5">
+		<%= form_for(:session, :url => annotate_create_path, :html => {:class => "well"} ) do |f| %>
+			<%= f.label :name, "Enter your NUS matric or MTurk ID to begin:" %>
+			<%= f.text_field :username, :placeholder => "Enter matric or ID..." %>
+			<br>
+			<%= f.submit "Begin", :class => "btn btn-primary" %>
+		<% end %>
+	</div>
+</div>

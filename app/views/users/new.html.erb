@@ -4,10 +4,10 @@
 </header>
 
 <div class="row">
-	<div class="span4">
+	<div class="span5">
 		Enter your NUS matric or MTurk ID to begin:
-		<%= form_tag(nil, :id => "cited", :class => "well") do %>
-			<%= text_field_tag("username", nil, :placeholder=>"Enter your matric or ID") %><br>
+		<%= form_tag(annotate_work_path, :id => "cited", :class => "well") do %>
+			<%= text_field_tag("username", nil, :placeholder=>"Enter your matric or ID", :class => "span4") %><br>
 			<%= submit_tag("Begin", :id => "btnBegin", :class => "btn btn-primary") %>
 		<% end %>
 	</div>

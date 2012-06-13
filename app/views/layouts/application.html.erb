@@ -33,7 +33,7 @@
 							<li class="<%= @home %>"><%= link_to "Main", home_path  %></li>
               <li class="<%= @citation %>"><%= link_to "Citation", citation_path  %></li>
 							<li class="<%= @classification %>"><%= link_to "Type", type_path  %></li>
-              <li class="<%= @annotate %>"><%= link_to "Annotate (Work in Progress)", annotate_path  %></li>
+              <li class="<%= @annotate %>"><%= link_to "Annotate (Work in Progress)", annotate_start_path  %></li>
 							<li class="<%= @download %>"><%= link_to "Download (Pilot)", download_path  %></li>
 							<li class="<%= @upload %>"><%= link_to "Upload (Work in Progress)", upload_path  %></li>
               <li class="<%= @about %>"><%= link_to "About", about_path  %></li>
@@ -47,7 +47,7 @@
     <div class="container">
       <div class="content">
 				<%= yield %>
-				<!-- <%= debug(params) if Rails.env.development? %> -->
+				<%= debug(params) if Rails.env.development? %>
       </div><!--/content-->
 
       <footer class="footer">
