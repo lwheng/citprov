@@ -9,6 +9,7 @@ gem 'sqlite3'
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem 'libxml-ruby'
 gem 'text'
+gem 'yaml_db'
 
 # Gems used only for assets and not required
 # in production environments by default.

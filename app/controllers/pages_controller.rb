@@ -78,13 +78,14 @@ class PagesController < ApplicationController
             # have not cited for this cite_key, carry on
           end
         end
-        @current_key = session[:current_cite].cite_key
+        # @current_key = session[:current_cite].cite_key
       else
         # just started
         # go fetch a near-3 cite_key
         session[:current_cite] = Annotation.get_first
-        @current_key = session[:current_cite].cite_key
+        # @current_key = session[:current_cite].cite_key
       end
+      @current_key = session[:current_cite].cite_key
     else
       redirect_to (annotate_start_path)
     end
