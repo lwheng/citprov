@@ -272,12 +272,12 @@ class Citees < ActiveRecord::Base
 
     def cited_pdf_link(arg)
       cited = arg.split("==>")[1]
-      return "http://wing.comp.nus.edu.sg/~antho/#{cited[0]}/#{cited[0,3]}/#{cited}.pdf"
+      return "http://www.aclweb.org/anthology/#{cited[0]}/#{cited[0,3]}/#{cited}.pdf"
     end
 
     def citing_pdf_link(arg)
       citing = arg.split("==>")[0]
-      return "http://wing.comp.nus.edu.sg/~antho/#{citing[0]}/#{citing[0,3]}/#{citing}.pdf"
+      return "http://www.aclweb.org/anthology/#{citing[0]}/#{citing[0,3]}/#{citing}.pdf"
     end
 
     def get_citees(arg)

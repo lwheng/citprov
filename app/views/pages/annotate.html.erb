@@ -21,25 +21,27 @@
 	<div class="span8">
 		<h3>Cited Paper <small>(See <%= link_to "#{@current_key.split("==>")[1]}.pdf", Citees.cited_pdf_link(@current_key), :target => "_blank" %>)</small></h3>
 		<%= form_tag(annotate_submit_path, :id => "cited", :class => "well") do %>
-		<div id="citedPaper" style="position:relative; 
-		 left:0px;
-		 top:0px;
-		 width:100%;
-		 height:300px;
-		 background-color:#ffffff;
-		 overflow:auto;">
-		<%= Citees.cited(@current_key) %>
-		</div>
-		<br>
-		<%= radio_button("type", "choice", "General") %> General
-		<%= radio_button("type", "choice", "Specific", :checked => "checked") %> Specific
-		<%= radio_button("type", "choice", "Undetermined") %> Undetermined
-		<br>
-		<br>
-		<% if session[:annotate_error] %>
-			<%= session[:annotate_error] %>
-		<% end %>
-		<%= submit_tag("Submit Annotations", :id => "btnSubmit", :class => "btn btn-primary") %>
+			<p>
+				<%= label_tag("Choose the type of the citation:")%>
+				<%= radio_button("type", "choice", "General") %> <a href="#" rel="tooltip" data-original-title="The citing paper refers to the cited paper as a whole, not specifically referring to a particular section.">General</a>
+				<%= radio_button("type", "choice", "Specific") %> <a href="#" rel="tooltip" data-original-title="The citing paper refers a specific/particular line or section of the cited paper.">Specific</a>
+				<%= radio_button("type", "choice", "Undetermined") %> <a href="#" rel="tooltip" data-original-title="When there is not enough information to determine the type of citation.">Undetermined</a>
+			</p>
+			<p>(Scroll down in this frame to read the paper)
+			<div id="citedPaper" style="position:relative; 
+			 left:0px;
+			 top:0px;
+			 width:100%;
+			 height:300px;
+			 background-color:#ffffff;
+			 overflow:auto;">
+			<%= Citees.cited(@current_key) %>
+			</div>
+			<br>
+			<% if session[:annotate_error] %>
+				<%= session[:annotate_error] %>
+			<% end %>
+			<%= submit_tag("Submit Annotations", :id => "btnSubmit", :class => "btn btn-primary") %>
 		<% end %>
 	</div>
 </div>
