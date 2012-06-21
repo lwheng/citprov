@@ -23,13 +23,14 @@
 		<%= form_tag(annotate_submit_path, :id => "cited", :class => "well") do %>
 			<p>
 				<%= label_tag("Choose the type of the citation:")%>
-				<%= radio_button("type", "choice", "General", :onClick => "clickedGeneral()") %> <a href="#" rel="tooltip" data-original-title="The citing paper refers to the cited paper as a whole, not specifically referring to a particular section.">General</a>
-				<%= radio_button("type", "choice", "Specific", :onClick => "clickedSpecific()") %> <a href="#" rel="tooltip" data-original-title="The citing paper refers a specific/particular line or section of the cited paper.">Specific</a>
-				<%= radio_button("type", "choice", "Undetermined") %> <a href="#" rel="tooltip" data-original-title="When there is not enough information to determine the type of citation.">Undetermined</a>
+				<%= radio_button("type", "choice", "General", :onClick => "clickDisable()") %> General [<a href="#" rel="tooltip" data-original-title="The citing paper refers to the cited paper as a whole, not specifically referring to a particular section.">?</a>]
+				<%= radio_button("type", "choice", "Specific", :onClick => "clickEnable()") %> Specific [<a href="#" rel="tooltip" data-original-title="The citing paper refers a specific/particular line or section of the cited paper.">?</a>]
+				<%= radio_button("type", "choice", "Undetermined", :onClick => "clickDisable()") %> Undetermined [<a href="#" rel="tooltip" data-original-title="When there is not enough information to determine the type of citation.">?</a>]
 			</p>
-			<p>(Scroll down in this frame to read the paper)</p>
-			<div id='hiddenText' class='alert'>
-				<strong>You have selected General, the cited paper is now disabled</strong>
+			<a href="#" rel="popover" data-content="To annotate, simply read the context on the left, and then click and select the lines in this cited paper that you think is the referred information." data-original-title="">How do I annotate?</a>
+			(Scroll and read this cited paper for the cited information)
+			<div id='hiddenText' class='alert alert-success'>
+				<strong>You have selected General or Undetermined, the cited paper is now disabled from selections</strong>
 			</div>
 			<div id="citedPaper" style="position:relative; 
 			 left:0px;
@@ -70,25 +71,25 @@ for(var i=0;i<content_holder.children.length;i++) {
 				d.appendChild(d.input_field);
 			}
 			else {
-				d.style.backgroundColor = 'inherit';
+				d.style.backgroundColor = '#FFFFFF'
 				d.removeChild(d.input_field);
 			}
 		}
 	})();
 }
 
-function clickedGeneral() {
+function clickDisable() {
 	content_holder = document.getElementById('citedPaper')
 	// content_holder.style['overflow'] = "hidden"
-	content_holder.style['backgroundColor'] = "#CCCCCC"
+	// content_holder.style['backgroundColor'] = "#CCCCCC"
 	document.getElementById('hiddenText').hidden = false
 	toggleDisabled(content_holder);
 }
 
-function clickedSpecific() {
+function clickEnable() {
 	content_holder = document.getElementById('citedPaper')
 	// content_holder.style['overflow'] = "auto"
-	content_holder.style['backgroundColor'] = "#FFFFFF"
+	// content_holder.style['backgroundColor'] = "#FFFFFF"
 	document.getElementById('hiddenText').hidden = true
 	toggleEnabled(content_holder);
 }
