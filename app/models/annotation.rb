@@ -347,29 +347,13 @@ class Annotation < ActiveRecord::Base
         return "http://www.aclweb.org/anthology/#{citing[0]}/#{citing[0,3]}/#{citing}.pdf"
       end
       
-      def context(cite_key)
-        info = cite_key.split("==>")
-        citing = info[0]
-        cited = info[1]
-
-        return "The citing paper, #{citing}, can contain more than 1 citing contexts. Aim: To display only 1 context at a time, and to maintain
-        the same citing paper"
-
-        # Each context (should be) annotated by 3 annotators
-
-        # Using cite_key, fetch all contexts
-        # Get context that is near-3
-        # Need to maintain same cite_key --> use user id to check whether already annotated for each context
-        # contexts = Model.find_by_cite_key(cite_key)
-        contextDisplay = nil
-        count = 0
-        contexts.each do |context|
-          if context.count != 3
-            if context.count > count
-              contextDisplay = context
-              coount = context.count
-            end
-          end
+      def context(arg)
+        # arg is already the Annotation record
+        if arg.context
+          root = (Document.new arg.context).root
+          return root.text
+        else
+          return "This is a demo, and should display the context from the citing paper"
         end
       end
     end
