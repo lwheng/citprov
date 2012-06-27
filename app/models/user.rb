@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   attr_accessible :username, :annotations, :old_annotation_count
+  serialize :annotations, Hash
   
   class << self
     def authenticate_with_username(id, cookie_username)

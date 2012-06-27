@@ -177,10 +177,25 @@ class PagesController < ApplicationController
 
     annotation = "#{session[:current_cite].cite_key},#{annotateType}#{specificDetails}"
     
-    record = Annotation.find_by_cite_key(session[:current_cite].cite_key)
-    record.annotations[current_user.username] = annotation
-    record.annotation_count = record.annotation_count + 1
-    @outcome = record.save
+    recordAnnotation = Annotation.find_by_cite_key(session[:current_cite].cite_key)
+    recordAnnotation.annotations[current_user.username] = annotation
+    recordAnnotation.annotation_count = recordAnnotation.annotation_count + 1
+    
+    recordUser = User.find_by_username(current_user.username)
+    if !recordUser.annotations
+      recordUser.annotations = {}
+    end
+    recordUser.annotations[session[:current_cite].cite_key] = "#{annotateType}#{specificDetails}"
+    if recordUser.new_annotation_count
+      recordUser.old_annotation_count = recordUser.new_annotation_count
+    else
+      recordUser.new_annotation_count = 0
+    end
+    
+    recordUser.new_annotation_count = recordUser.new_annotation_count + 1
+    
+    @outcome = recordAnnotation.save
+    recordUser.save
 
     # @annotate_submit_annotation = annotation
     # redirect_to(annotate_work_path)

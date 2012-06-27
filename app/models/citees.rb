@@ -103,32 +103,6 @@ class Citees < ActiveRecord::Base
          puts error.backtrace.join("\n")
        end
     end
-    
-    def context(cite_key)
-      info = cite_key.split("==>")
-      citing = info[0]
-      cited = info[1]
-      
-      return "The citing paper, #{citing}, can contain more than 1 citing contexts. Aim: To display only 1 context at a time, and to maintain
-      the same citing paper"
-      
-      # Each context (should be) annotated by 3 annotators
-      
-      # Using cite_key, fetch all contexts
-      # Get context that is near-3
-      # Need to maintain same cite_key --> use user id to check whether already annotated for each context
-      # contexts = Model.find_by_cite_key(cite_key)
-      contextDisplay = nil
-      count = 0
-      contexts.each do |context|
-        if context.count != 3
-          if context.count > count
-            contextDisplay = context
-            coount = context.count
-          end
-        end
-      end
-    end
 
     def cited(arg)
       # Fetch paper with id, cited
@@ -294,16 +268,6 @@ class Citees < ActiveRecord::Base
         end
         return display.html_safe
       end
-    end
-
-    def cited_pdf_link(arg)
-      cited = arg.split("==>")[1]
-      return "http://www.aclweb.org/anthology/#{cited[0]}/#{cited[0,3]}/#{cited}.pdf"
-    end
-
-    def citing_pdf_link(arg)
-      citing = arg.split("==>")[0]
-      return "http://www.aclweb.org/anthology/#{citing[0]}/#{citing[0,3]}/#{citing}.pdf"
     end
 
     def get_citees(arg)
