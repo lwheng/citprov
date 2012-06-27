@@ -13,6 +13,9 @@
 <div class="row">
 	<div class="span4">
 		<h3>Citing Paper / Context <small>(See <%= link_to "original", Citees.citing_pdf_link(@current_key), :target => "_blank" %>)</small></h3>
+		<div id='noContext' class='alert alert-success'>
+			<strong>You have selected General or Undetermined, the cited paper is now disabled from selections</strong>
+		</div>
 		<div class="well">
 			<!-- <%= Citees.citing(@current_key) %> -->
 			<%= Citees.context(@current_key) %>
@@ -52,6 +55,7 @@
 </div>
 
 <script>
+document.getElementById('noContext').hidden = true
 document.getElementById('hiddenText').hidden = true
 content_holder = document.getElementById('citedPaper');
 for(var i=0;i<content_holder.children.length;i++) {

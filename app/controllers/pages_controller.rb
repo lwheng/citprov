@@ -35,14 +35,13 @@ class PagesController < ApplicationController
   end
 
   def annotate
+    @title = "Annotate"
+    @annotate = "active"
     if signed_in?
-      @title = "Annotate"
-      @annotate = "active"
-
       if session[:current_cite]
         # working currently
         # check whether no. of cites = 3
-        cite_count = Annotation.find_by_cite_key(session[:current_cite].cite_key).users_count
+        cite_count = Annotation.find_by_cite_key(session[:current_cite].cite_key).annotation_count
         if cite_count == 3
           # reached 3, get a new one
           # check all citees of current cited first, before moving to next cited
@@ -59,8 +58,8 @@ class PagesController < ApplicationController
         else
           # check whether already cited by current_user
           cite = Annotation.find_by_cite_key(session[:current_cite].cite_key)
-          user = cite.user
-          if user.keys.include?(current_user.username)
+          annotations = cite.annotations
+          if annotations.keys.include?(current_user.username)
             # already cited for this cite_key
             # check all citees of current cited first, before moving to next cited
             @citees = Annotation.get_citees(session[:current_cite].cite_key)
