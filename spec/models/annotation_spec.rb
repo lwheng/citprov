@@ -7,11 +7,11 @@ end
 #
 # Table name: annotations
 #
-#  id          :integer         not null, primary key
-#  cite_key    :string(255)
-#  user        :text
-#  created_at  :datetime
-#  updated_at  :datetime
-#  users_count :integer
+#  id               :integer         not null, primary key
+#  cite_key         :string(255)
+#  annotations      :text
+#  created_at       :datetime
+#  updated_at       :datetime
+#  annotation_count :integer
 #
 

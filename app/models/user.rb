@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :username
+  attr_accessible :username, :annotations, :old_annotation_count
   
   class << self
     def authenticate_with_username(id, cookie_username)
@@ -12,9 +12,11 @@ end
 #
 # Table name: users
 #
-#  id         :integer         not null, primary key
-#  username   :string(255)
-#  created_at :datetime
-#  updated_at :datetime
+#  id                   :integer         not null, primary key
+#  username             :string(255)
+#  created_at           :datetime
+#  updated_at           :datetime
+#  annotations          :text
+#  old_annotation_count :integer
 #
 

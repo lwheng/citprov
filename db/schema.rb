@@ -11,14 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120621081820) do
+ActiveRecord::Schema.define(:version => 20120627085100) do
 
   create_table "annotations", :force => true do |t|
     t.string   "cite_key"
-    t.text     "user"
+    t.text     "annotations"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "users_count"
+    t.integer  "annotation_count"
   end
 
   create_table "cited_citees", :force => true do |t|
@@ -40,7 +40,8 @@ ActiveRecord::Schema.define(:version => 20120621081820) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "annotations"
-    t.integer  "annotate_count"
+    t.integer  "old_annotation_count"
+    t.integer  "new_annotation_count"
   end
 
 end
