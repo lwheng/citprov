@@ -1,5 +1,5 @@
 class Annotation < ActiveRecord::Base
-    attr_accessible :cite_key, :annotations, :annotation_count
+    attr_accessible :cite_key, :annotations, :annotation_count, :context
     serialize :annotations, Hash
 
     validates :cite_key, presence: true
@@ -43,7 +43,7 @@ class Annotation < ActiveRecord::Base
         h
       end
 
-      def users_count()
+      def annotation_count()
         # An administrative method used to sort out the no. of annotators for each record
         all.each do |record|
           record.annotation_count = record.annotations.keys.size
@@ -53,7 +53,7 @@ class Annotation < ActiveRecord::Base
 
       def get_first()
         # Not the conventional first record.
-        # Gets the first record that is nearest to getting 3 annotators
+        # Gets the record that is nearest to getting 3 annotators
         # Returns the record
         if result = find_by_annotation_count(2)
           return result
@@ -63,6 +63,14 @@ class Annotation < ActiveRecord::Base
           return result
         end
       end
+      
+      def get_first1(arg)
+        if arg == 0
+          return find_by_annotation_count(0)
+        end
+        result = find(:all, :conditions => ["annotation_count = ?", arg])
+        return result
+      end
 
       def get_citees(arg)
         # Gets all the citees that cites a cited paper
@@ -71,11 +79,12 @@ class Annotation < ActiveRecord::Base
         cited = arg.split("==>")[1]
         results = find(:all, :conditions => ["cite_key LIKE ? AND annotation_count <> ?", "\%==>#{cited}", "3"], :order =>
         "annotation_count DESC")
-        citees = []
-        results.each do |v|
-          citees.concat([v.cite_key])
-        end
-        return citees
+        # citees = []
+        # results.each do |v|
+        #   citees.concat([v.cite_key])
+        # end
+        # return citees
+        return results
       end
     end
 end
@@ -89,5 +98,6 @@ end
 #  created_at       :datetime
 #  updated_at       :datetime
 #  annotation_count :integer
+#  context          :text
 #
 

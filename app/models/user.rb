@@ -18,5 +18,6 @@ end
 #  updated_at           :datetime
 #  annotations          :text
 #  old_annotation_count :integer
+#  new_annotation_count :integer
 #
 

@@ -5,25 +5,23 @@
 		<% if signed_in? %>
 			Hi <strong><%= current_user.username %></strong>,
 		<% end %>
-		<!-- You're looking at <strong><%= @current_key %></strong><br> -->
 		you're looking at <strong><%= session[:current_cite].cite_key %></strong><br>
 	</p>
 </header>
 
 <div class="row">
 	<div class="span4">
-		<h3>Citing Paper / Context <small>(See <%= link_to "original", Citees.citing_pdf_link(@current_key), :target => "_blank" %>)</small></h3>
+		<h3>Citing Paper / Context <small>(See <%= link_to "original", Citees.citing_pdf_link(session[:current_cite].cite_key), :target => "_blank" %>)</small></h3>
 		<div id='noContext' class='alert alert-success'>
 			<strong>You have selected General or Undetermined, the cited paper is now disabled from selections</strong>
 		</div>
 		<div class="well">
-			<!-- <%= Citees.citing(@current_key) %> -->
-			<%= Citees.context(@current_key) %>
+			<%= Citees.context(session[:current_cite].cite_key) %>
 		</div>
 	</div>
 	
 	<div class="span8">
-		<h3>Cited Paper <small>(See <%= link_to "original", Citees.cited_pdf_link(@current_key), :target => "_blank" %>)</small></h3>
+		<h3>Cited Paper <small>(See <%= link_to "original", Citees.cited_pdf_link(session[:current_cite].cite_key), :target => "_blank" %>)</small></h3>
 		<%= form_tag(annotate_submit_path, :id => "cited", :class => "well") do %>
 			<p>
 				<%= label_tag("Choose the type of the citation:")%>
@@ -43,7 +41,7 @@
 			 height:300px;
 			 background-color:#ffffff;
 			 overflow:auto;">
-			<%= Citees.cited(@current_key) %>
+			<%= Citees.cited(session[:current_cite].cite_key) %>
 			</div>
 			<br>
 			<% if session[:annotate_error] %>

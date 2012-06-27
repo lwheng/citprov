@@ -13,5 +13,6 @@ end
 #  created_at       :datetime
 #  updated_at       :datetime
 #  annotation_count :integer
+#  context          :text
 #
 
