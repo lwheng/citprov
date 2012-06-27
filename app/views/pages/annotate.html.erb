@@ -3,23 +3,24 @@
 	<p class="lead">We are working on an easier and more convenient way to annotate. Please come back again!</p>
 	<p>
 		<% if signed_in? %>
-			<h3>Hi <%= current_user.username %>,</h3>
+			Hi <strong><%= current_user.username %></strong>,
 		<% end %>
 		<!-- You're looking at <strong><%= @current_key %></strong><br> -->
-		You're looking at <strong><%= session[:current_cite].cite_key %></strong><br>
+		you're looking at <strong><%= session[:current_cite].cite_key %></strong><br>
 	</p>
 </header>
 
 <div class="row">
 	<div class="span4">
-		<h3>Citing Paper / Context <small>(See <%= link_to "#{@current_key.split("==>")[0]}.pdf", Citees.citing_pdf_link(@current_key), :target => "_blank" %>)</small></h3>
+		<h3>Citing Paper / Context <small>(See <%= link_to "original", Citees.citing_pdf_link(@current_key), :target => "_blank" %>)</small></h3>
 		<div class="well">
-			<%= Citees.citing(@current_key) %>
+			<!-- <%= Citees.citing(@current_key) %> -->
+			<%= Citees.context(@current_key) %>
 		</div>
 	</div>
 	
 	<div class="span8">
-		<h3>Cited Paper <small>(See <%= link_to "#{@current_key.split("==>")[1]}.pdf", Citees.cited_pdf_link(@current_key), :target => "_blank" %>)</small></h3>
+		<h3>Cited Paper <small>(See <%= link_to "original", Citees.cited_pdf_link(@current_key), :target => "_blank" %>)</small></h3>
 		<%= form_tag(annotate_submit_path, :id => "cited", :class => "well") do %>
 			<p>
 				<%= label_tag("Choose the type of the citation:")%>

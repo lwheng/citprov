@@ -43,17 +43,6 @@ class Annotation < ActiveRecord::Base
         h
       end
 
-      def display()
-        # Displays records
-        all.each do |record|
-          puts "#{record.cite_key}"
-          record.user.keys.each do |key|
-            puts "\t#{key}\t\t#{record.user[key][:cite_class]},#{record.user[key][:cite_type]}"
-          end
-        end
-        print
-      end
-
       def users_count()
         # An administrative method used to sort out the no. of annotators for each record
         all.each do |record|
