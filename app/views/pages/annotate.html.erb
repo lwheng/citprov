@@ -3,9 +3,9 @@
 	<p class="lead">We are working on an easier and more convenient way to annotate. Please come back again!</p>
 	<p>
 		<% if signed_in? %>
-			Hi <strong><%= current_user.username %></strong>,
+			Hi <strong><%= current_user.username %></strong>, you're looking at <strong><%= session[:current_cite].cite_key %></strong><br>
+			You have annotated for: <strong><%= User.get_annotate_count(current_user.username) %></strong> record(s)
 		<% end %>
-		you're looking at <strong><%= session[:current_cite].cite_key %></strong><br>
 	</p>
 </header>
 

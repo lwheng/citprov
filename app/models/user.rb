@@ -7,6 +7,15 @@ class User < ActiveRecord::Base
       user = find_by_id(id)
       (user && user.username == cookie_username) ? user : nil
     end
+    
+    def get_annotate_count(username)
+      user = find_by_username(username)
+      if user.new_annotation_count
+        return user.new_annotation_count
+      else
+        return 0
+      end
+    end
   end
 end
 # == Schema Information
