@@ -1,6 +1,9 @@
+require 'digest/md5'
+
 class User < ActiveRecord::Base
-  attr_accessible :username, :annotations, :old_annotation_count
+  attr_accessible :username, :annotations, :old_annotation_count, :md5
   serialize :annotations, Hash
+  serialize :md5, Array
   
   class << self
     def authenticate_with_username(id, cookie_username)
@@ -8,13 +11,9 @@ class User < ActiveRecord::Base
       (user && user.username == cookie_username) ? user : nil
     end
     
-    def get_annotate_count(username)
-      user = find_by_username(username)
-      if user.new_annotation_count
-        return user.new_annotation_count
-      else
-        return 0
-      end
+    def generate_md5(user)
+      time = Time.now.getutc
+      return Digest::MD5.hexdigest("#{user.username}#{time}")
     end
   end
 end
@@ -29,5 +28,6 @@ end
 #  annotations          :text
 #  old_annotation_count :integer
 #  new_annotation_count :integer
+#  md5                  :text
 #
 

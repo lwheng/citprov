@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120627105246) do
+ActiveRecord::Schema.define(:version => 20120629092214) do
 
   create_table "annotations", :force => true do |t|
     t.string   "cite_key"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20120627105246) do
     t.text     "annotations"
     t.integer  "old_annotation_count"
     t.integer  "new_annotation_count"
+    t.text     "md5"
   end
 
 end

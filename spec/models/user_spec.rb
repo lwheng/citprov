@@ -14,5 +14,6 @@ end
 #  annotations          :text
 #  old_annotation_count :integer
 #  new_annotation_count :integer
+#  md5                  :text
 #
 

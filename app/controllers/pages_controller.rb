@@ -181,24 +181,40 @@ class PagesController < ApplicationController
     recordAnnotation.annotations[current_user.username] = annotation
     recordAnnotation.annotation_count = recordAnnotation.annotation_count + 1
     
-    recordUser = User.find_by_username(current_user.username)
-    if !recordUser.annotations
-      recordUser.annotations = {}
+    # recordUser = User.find_by_username(current_user.username)
+    # if !recordUser.annotations
+    #   recordUser.annotations = {}
+    # end
+    # recordUser.annotations[session[:current_cite].cite_key] = "#{annotateType}#{specificDetails}"
+    # if recordUser.new_annotation_count
+    #   recordUser.old_annotation_count = recordUser.new_annotation_count
+    # else
+    #   recordUser.new_annotation_count = 0
+    # end
+    
+    # @outcome = recordAnnotation.save
+    # recordUser.save
+    
+    if !current_user.annotations
+      current_user.annotations = {}
     end
-    recordUser.annotations[session[:current_cite].cite_key] = "#{annotateType}#{specificDetails}"
-    if recordUser.new_annotation_count
-      recordUser.old_annotation_count = recordUser.new_annotation_count
+    current_user.annotations[session[:current_cite].cite_key] = "#{annotateType}#{specificDetails}"
+    if current_user.new_annotation_count
+      current_user.old_annotation_count = current_user.new_annotation_count
     else
-      recordUser.new_annotation_count = 0
+      current_user.new_annotation_count = 0
     end
     
-    recordUser.new_annotation_count = recordUser.new_annotation_count + 1
+    current_user.new_annotation_count = current_user.new_annotation_count + 1
+    if !session[:noOfAnnotations]
+      session[:noOfAnnotations] = 0
+    end
+    session[:noOfAnnotations] = session[:noOfAnnotations] + 1
     
-    @outcome = recordAnnotation.save
-    recordUser.save
+    @outcomeAnnotation = recordAnnotation.save
+    @outcomeUser = current_user.save
 
-    # @annotate_submit_annotation = annotation
-    # redirect_to(annotate_work_path)
+    redirect_to(annotate_work_path)
   end
 
 end

@@ -4,7 +4,7 @@
 	<p>
 		<% if signed_in? %>
 			Hi <strong><%= current_user.username %></strong>, you're looking at <strong><%= session[:current_cite].cite_key %></strong><br>
-			You have annotated for: <strong><%= User.get_annotate_count(current_user.username) %></strong> record(s)
+			You have annotated for: <strong><%= (current_user.new_annotation_count ? current_user.new_annotation_count : 0) %></strong> record(s)
 		<% end %>
 	</p>
 </header>

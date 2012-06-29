@@ -27,6 +27,12 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    # save the number of annotations done in this session
+    md5 = User.generate_md5(current_user)
+    noOfAnnotations = session[:noOfAnnotations]
+    paid = false
+    current_user.md5.push([md5, noOfAnnotations, paid])
+    current_user.save
     sign_out
     redirect_to home_path
   end
