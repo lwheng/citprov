@@ -1,2 +1,8 @@
-<%= @annotate_submit_annotation %>
-Successful? <%= @outcome %>
+<header class="jumbotron subhead" id="overview">
+	<h1>Annotate <small>(Work in Progress)</small></h1>
+	<p class="lead">Annotation for <strong><%= session[:current_cite] %></strong> saved!</p>
+	<p class="download-info">
+		<%= link_to "Continue Annotating", annotate_work_path, :class => "btn btn-primary btn-large" %>
+		<%= link_to "See My Annotations", annotate_display_path, :class => "btn btn-large" %>
+	</p>
+</header>
