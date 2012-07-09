@@ -103,7 +103,8 @@ class Annotation < ActiveRecord::Base
         # Get the title of the cited paper
         # Try bib file first because the file size smallest
         begin
-          file = open("http://wing.comp.nus.edu.sg/~antho/#{cited[0]}/#{cited[0,3]}/#{cited}.bib","r")
+          # file = open("http://wing.comp.nus.edu.sg/~antho/#{cited[0]}/#{cited[0,3]}/#{cited}.bib","r")
+          file = open("http://www.comp.nus.edu.sg/~lwheng/antho/#{cited}.bib","r")
           regexTitle = /(^title)\s*=\s*\{(.*)\}/
           regexBookTitle = /(^booktitle)\s*=\s*\{(.*)\}/
           while (line = file.gets)
@@ -117,7 +118,8 @@ class Annotation < ActiveRecord::Base
         rescue => error
           # no bib file. try seersuite file
           begin
-            file = open("http://wing.comp.nus.edu.sg/~antho/#{cited[0]}/#{cited[0,3]}/#{cited}-pdfbox-seersuite.txt","r")
+            # file = open("http://wing.comp.nus.edu.sg/~antho/#{cited[0]}/#{cited[0,3]}/#{cited}-pdfbox-seersuite.txt","r")
+            file = open("http://www.comp.nus.edu.sg/~lwheng/antho/#{cited}-pdfbox-seersuite.txt","r")
             data = file.read
             root = (Document.new data).root
             content = root.elements
@@ -127,7 +129,8 @@ class Annotation < ActiveRecord::Base
           rescue => error1
             # no seersuit file either. try -final.xml
             begin
-              file = open("http://wing.comp.nus.edu.sg/~antho/#{cited[0]}/#{cited[0,3]}/#{cited}-final.xml","r")
+              # file = open("http://wing.comp.nus.edu.sg/~antho/#{cited[0]}/#{cited[0,3]}/#{cited}-final.xml","r")
+              file = open("http://www.comp.nus.edu.sg/~lwheng/antho/#{cited}-final.xml","r")
               data = file.read
               root = (Document.new data).root
               title = root.elements["teiHeader"].elements["fileDesc"].elements["titleStmt"].elements["title"]
@@ -143,7 +146,8 @@ class Annotation < ActiveRecord::Base
         distance = 314159265358979323846
         display = ""
         begin
-           file = open("http://wing.comp.nus.edu.sg/~antho/#{citing[0]}/#{citing[0,3]}/#{citing}-parscit.xml","r")
+           # file = open("http://wing.comp.nus.edu.sg/~antho/#{citing[0]}/#{citing[0,3]}/#{citing}-parscit.xml","r")
+           file = open("http://www.comp.nus.edu.sg/~lwheng/antho/#{cited}-parscit.xml","r")
            data = file.read
            root = (Document.new data).root
            citationList = root.elements["algorithm"].elements["citationList"]
@@ -177,7 +181,8 @@ class Annotation < ActiveRecord::Base
 
         begin
           # Attempts to fetch *-parscit-section.xml
-          file = open("http://wing.comp.nus.edu.sg/~antho/#{cited[0]}/#{cited[0,3]}/#{cited}-parscit-section.xml","r")
+          # file = open("http://wing.comp.nus.edu.sg/~antho/#{cited[0]}/#{cited[0,3]}/#{cited}-parscit-section.xml","r")
+          file = open("http://www.comp.nus.edu.sg/~lwheng/antho/#{cited}-parscit-section.xml","r")          
           data = file.read
           root = (Document.new data).root
           content = root.elements["algorithm"].elements["variant"]
@@ -312,7 +317,8 @@ class Annotation < ActiveRecord::Base
         rescue => error
           # No xml format found. Revert to using txt format
           # Attempt to do some formatting using regex to match section headers
-          file = open("http://wing.comp.nus.edu.sg/~antho/#{cited[0]}/#{cited[0,3]}/#{cited}-pdfbox.txt","r")
+          # file = open("http://wing.comp.nus.edu.sg/~antho/#{cited[0]}/#{cited[0,3]}/#{cited}-pdfbox.txt","r")
+          file = open("http://www.comp.nus.edu.sg/~lwheng/antho/#{cited}-pdfbox.txt","r")          
           display = ""
           title = true # assumes first line is the title
           while (line = file.gets)

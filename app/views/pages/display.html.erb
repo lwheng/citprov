@@ -5,43 +5,46 @@
 		<% if signed_in? %>
 		<h2>Annotator: <strong><%= current_user.username %></strong></h2>
 		You have annotated for: <strong><%= (current_user.new_annotation_count ? current_user.new_annotation_count : 0) %></strong> record(s)
-		<% if current_user.annotations.keys.size > 0 %>
-		<table class = "table table-striped">
-			<thead>
-				<tr>
-					<th>Cite Key</th>
-					<th>Your Annotation</th>
-				</tr>
-			</thead>
-			<tbody>
-				<% current_user.annotations.keys.each do |r| %>
-				<tr>
-					<td><%= r %></td>
-					<td><%= current_user.annotations[r] %></td>
-				</tr>	
-				<% end %>
-			</tbody>
-		</table>
-		<br>
-		<table class = "table table-striped">
-			<thead>
-				<tr>
-					<th>MD5</th>
-					<th>No. of Annotations</th>
-					<th>Paid?</th>
-				</tr>
-			</thead>
-			<tbody>
-				<% current_user.md5.each do |r| %>
-				<tr>
-					<td><%= r[0] %></td>
-					<td><%= r[1] %></td>
-					<td><%= r[2] %></td>
-				</tr>	
-				<% end %>
-			</tbody>
-		</table>
-		<% end %>
 		<% end %>
 	</p>
 </header>
+
+<% if signed_in? %>
+	<% if current_user.annotations.keys.size > 0 %>
+	<table class = "table table-striped">
+		<thead>
+			<tr>
+				<th>Cite Key</th>
+				<th>Your Annotation</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% current_user.annotations.keys.each do |r| %>
+			<tr>
+				<td><%= r %></td>
+				<td><%= current_user.annotations[r] %></td>
+			</tr>	
+			<% end %>
+		</tbody>
+	</table>
+	<br>
+	<table class = "table table-striped">
+		<thead>
+			<tr>
+				<th>MD5</th>
+				<th>No. of Annotations</th>
+				<th>Paid?</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% current_user.md5.each do |r| %>
+			<tr>
+				<td><%= r[0] %></td>
+				<td><%= r[1] %></td>
+				<td><%= r[2] %></td>
+			</tr>	
+			<% end %>
+		</tbody>
+	</table>
+	<% end %>
+<% end %>

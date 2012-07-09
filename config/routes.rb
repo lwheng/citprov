@@ -11,9 +11,6 @@ Citprov::Application.routes.draw do
   match '/download' => 'pages#download', :as => "download"
   match '/upload' => 'annotations#upload', :as => "upload"
   match '/upload_data' => 'annotations#upload_data', :as => "upload_data"
-  # match '/annotate' => 'pages#annotate', :as => "annotate"
-  # match '/annotate/submit' => 'pages#annotate_submit', :as => "annotate_submit"
-  
   match '/annotate/start' => 'sessions#new', :as => "annotate_start"
   match '/annotate/create' => 'sessions#create', :as => "annotate_create"
   match '/annotate/end' => 'sessions#destroy', :as => "annotate_end"
