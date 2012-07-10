@@ -13,24 +13,19 @@ class Annotation < ActiveRecord::Base
     validates :annotation_count, presence: true
     
     class << self
-      def loaddata()
-        # This method should only be ran once
-        # Loads all cite keys into model
-
-        # Read cite keys from annotationsMaster.txt
-        # And that add these keys into model
-        file = File.open("#{Rails.root}/app/assets/data/annotationsMaster.txt", "r")
-        while (line = file.gets)
-          cite_key =  line.split(",")[0]
-
-          # Check model whether cite_key exists. If not, then save to model accordingly
-          # Set users_count to zero by default
+      def init()
+        file = File.open("#{Rails.root}/app/assets/data/annotations500.txt", "r")
+        while (cite_key = file.gets)
+          cite_key = cite_key.strip()
           unless find_by_cite_key(cite_key)
             newRecord = new(:cite_key => cite_key)
-            newRecord.users_count = 0
+            newRecord.annotations = {}
+            newRecord.annotation_count = 0
+            context = nil
             newRecord.save
           end
         end
+        file.close()
       end
 
       def parse(user, annotation)

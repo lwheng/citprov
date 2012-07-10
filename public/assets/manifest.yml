@@ -1,4 +1,6 @@
 ---
+annotations500.txt: annotations500-073c3eaa1d809e5610f1faeff0dedfdb.txt
+annotationsMaster.txt: annotationsMaster-f79929ee2a7be208b6987d3ac57083f7.txt
 cited-citees.txt: cited-citees-55b20a9f9fe638a601127a404e55ff38.txt
 citation.png: citation-10814a27155f2cf7ce4ac3c7b5e0fd0d.png
 citation2.png: citation2-1794497e0687592cca3220364c38f4ad.png
@@ -13,5 +15,5 @@ fontawesome-webfont.ttf: fontawesome-webfont-10ef354e32c6961e81007e7a8132144b.tt
 fontawesome-webfont.woff: fontawesome-webfont-87b87854e1e6b9b7d888726d280d1f3a.woff
 twitter/bootstrap/glyphicons-halflings-white.png: twitter/bootstrap/glyphicons-halflings-white-0d9ce4eb23c7f3ec006607cdaa7017ba.png
 twitter/bootstrap/glyphicons-halflings.png: twitter/bootstrap/glyphicons-halflings-9ec9159187f3e873e60be6cf93033e91.png
-application.js: application-1658122138623d57e0a0436c4cb7044e.js
+application.js: application-3121487986a0161368b73c6e6bc17ac6.js
 application.css: application-9c978e8567f081735c3986ba03e80c27.css
