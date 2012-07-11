@@ -365,10 +365,13 @@ class Annotation < ActiveRecord::Base
       def context(arg)
         # arg is already the Annotation record
         if arg.context
-          root = (Document.new arg.context).root
-          return root.text
+          context = (Document.new arg.context).root
+          citStr = context.attributes["citStr"]
+          output = context.text.gsub(citStr, "<b>#{citStr}</b>")
+          output = "...#{output}..."
+          return output.html_safe
         else
-          return "This is a demo, and should display the context from the citing paper"
+          return "Oops! We were unable to show you the specific part where the citation was made. You can look at the original by clicking on the link above this message."
         end
       end
     end

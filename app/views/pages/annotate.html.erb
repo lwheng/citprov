@@ -20,6 +20,7 @@
 		<div class="well">
 			<%= Annotation.context(session[:current_cite]) %>
 		</div>
+		* The in-text citation is in <b>bold</b>.
 	</div>
 	
 	<div class="span8">
@@ -28,10 +29,10 @@
 			<p>
 				<%= label_tag("Choose the type of the citation:")%>
 				<%= radio_button("type", "choice", "General", :onClick => "clickDisable()") %> General [<a href="#" rel="tooltip" data-original-title="The citing paper refers to the cited paper as a whole, not specifically referring to a particular section.">?</a>]
-				<%= radio_button("type", "choice", "Specific", :onClick => "clickEnable()") %> Specific [<a href="#" rel="tooltip" data-original-title="The citing paper refers a specific/particular line or section of the cited paper.">?</a>]
+				<%= radio_button("type", "choice", "Specific", :onClick => "clickEnable()", :checked => true) %> Specific [<a href="#" rel="tooltip" data-original-title="The citing paper refers a specific/particular line or section of the cited paper.">?</a>]
 				<%= radio_button("type", "choice", "Undetermined", :onClick => "clickDisable()") %> Undetermined [<a href="#" rel="tooltip" data-original-title="When there is not enough information to determine the type of citation.">?</a>]
 			</p>
-			How do I annotate[<a href="#" rel="popover" data-content="To annotate, simply read the context on the left, and then click and select the lines in this cited paper that you think is the referred information." data-original-title="">?</a>]
+			How do I annotate [<a href="#" rel="popover" data-content="To annotate, simply read the context on the left, and then click and select the lines in this cited paper that you think is the referred information." data-original-title="">?</a>]
 			(Scroll and read this cited paper for the cited information)
 			<div id='hiddenText' class='alert alert-success'>
 				<strong>You have selected General or Undetermined, the cited paper is now disabled from selections</strong>
@@ -48,6 +49,7 @@
 			<br>
 			<% if session[:annotate_error] %>
 				<%= session[:annotate_error] %>
+				<%= session[:annotate_error] = nil %>
 			<% end %>
 			<%= submit_tag("Submit Annotations", :id => "btnSubmit", :class => "btn btn-primary") %>
 		<% end %>
