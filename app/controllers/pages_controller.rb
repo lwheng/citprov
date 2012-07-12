@@ -37,48 +37,30 @@ class PagesController < ApplicationController
   def annotate
     @title = "Annotate"
     @annotate = "active"
-    
+
     if signed_in?
       if session[:current_cite]
-        # Already there is cite_key
-        # Check whether already annotated by current user
-        result = Annotation.find_by_cite_key(session[:current_cite].cite_key)
-        if result.annotations.keys.include?(current_user.username)
-          # Already full-3. Get a new one.
-          # Start with same cite_key with different context first
-          results = Annotation.find(:all,
-                                    :conditions => ["cite_key = ? AND annotation_count <> ?", session[:current_cite].cite_key, "3"],
-                                    :order => "annotation_count DESC"
-                                    )
-          if results
-            # To check whether each result is already annotated by current user
-            results.each do |r|
-              if !r.annotations.keys.include?(current_user.username)
-                session[:current_cite] = r
-                return
-              end
-            end
+        result = Annotation.find_by_id(session[:current_cite].id)
+        if result.annotation_count < 3
+          if !result.annotations.keys.include?(current_user.username)
+            session[:current_cite] = result
+            return
           end
-          
-          # All contexts are full-3. Get a new one
-          # Try to maintain with same cited paper first. Get all citees of a cited paper
-          results1 = Annotation.get_citees(session[:current_cite].cite_key)
-          if results1
-            # Check whether result annotated by current user
-            results1.each do |r|
-              if !r.annotations.keys.include?(current_user.username)
-                session[:current_cite] = r
-                return
-              end
-            end
+        end
+        # Current context already cited 3 times
+        # Try another context first
+        results = Annotation.find(:all,
+                                  :conditions => ["cite_key = ? and annotation_count <> ? and id <> ?", result.cite_key, 3, result.id],
+                                  :order => "annotation_count DESC")
+        results.each do |r|
+          if !r.annotations.keys.include?(current_user.username)
+            session[:current_cite] = r
+            return
           end
-        else
-          session[:current_cite] = result
-          return       
         end
       end
-      
-      # No current cite yet. Get one
+
+      # No current_cite, get one
       temp = nil
       countList = [2,1]
       countList.each do |c|
@@ -95,8 +77,68 @@ class PagesController < ApplicationController
       session[:current_cite] = Annotation.get_first1(0)
       return
     else
-      redirect_to (annotate_start_path)
+      redirect_to(annotate_start_path)
     end
+    
+    # if signed_in?
+    #   if session[:current_cite]
+    #     # Already there is cite_key
+    #     # Check whether already annotated by current user
+    #     result = Annotation.find_by_cite_key(session[:current_cite].cite_key)
+    #     if result.annotations.keys.include?(current_user.username)
+    #       # Already full-3. Get a new one.
+    #       # Start with same cite_key with different context first
+    #       results = Annotation.find(:all,
+    #                                 :conditions => ["cite_key = ? AND annotation_count <> ?", session[:current_cite].cite_key, "3"],
+    #                                 :order => "annotation_count DESC"
+    #                                 )
+    #       if results
+    #         # To check whether each result is already annotated by current user
+    #         results.each do |r|
+    #           if !r.annotations.keys.include?(current_user.username)
+    #             session[:current_cite] = r
+    #             return
+    #           end
+    #         end
+    #       end
+          
+    #       # All contexts are full-3. Get a new one
+    #       # Try to maintain with same cited paper first. Get all citees of a cited paper
+    #       results1 = Annotation.get_citees(session[:current_cite].cite_key)
+    #       if results1
+    #         # Check whether result annotated by current user
+    #         results1.each do |r|
+    #           if !r.annotations.keys.include?(current_user.username)
+    #             session[:current_cite] = r
+    #             return
+    #           end
+    #         end
+    #       end
+    #     else
+    #       session[:current_cite] = result
+    #       return       
+    #     end
+    #   end
+      
+    #   # No current cite yet. Get one
+    #   temp = nil
+    #   countList = [2,1]
+    #   countList.each do |c|
+    #     results = Annotation.get_first1(c)
+    #     if results
+    #       results.each do |r|
+    #         if !r.annotations.keys.include?(current_user.username)
+    #           session[:current_cite] = r
+    #           return
+    #         end
+    #       end
+    #     end
+    #   end
+    #   session[:current_cite] = Annotation.get_first1(0)
+    #   return
+    # else
+    #   redirect_to (annotate_start_path)
+    # end
   end
 
   def annotate_submit
@@ -126,7 +168,7 @@ class PagesController < ApplicationController
 
     annotation = "#{session[:current_cite].cite_key},#{annotateType}#{specificDetails}"
     
-    recordAnnotation = Annotation.find_by_cite_key(session[:current_cite].cite_key)
+    recordAnnotation = Annotation.find_by_id(session[:current_cite].id)
     recordAnnotation.annotations[current_user.username] = annotation
     recordAnnotation.annotation_count = recordAnnotation.annotation_count + 1
     
@@ -147,7 +189,7 @@ class PagesController < ApplicationController
     if !current_user.annotations
       current_user.annotations = {}
     end
-    current_user.annotations[session[:current_cite].cite_key] = "#{annotateType}#{specificDetails}"
+    current_user.annotations["#{session[:current_cite].cite_key}##{session[:current_cite].id}"] = "#{annotateType}#{specificDetails}"
     if current_user.new_annotation_count
       current_user.old_annotation_count = current_user.new_annotation_count
     else
