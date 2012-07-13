@@ -30,17 +30,19 @@ class SessionsController < ApplicationController
     # save the number of annotations done in this session
     # first check whether he actually annotated by check old vs new annotation count
     if current_user
-      md5 = User.generate_md5(current_user)
-      noOfAnnotations = session[:noOfAnnotations]
-      paid = false
-      current_user.md5.push([md5, noOfAnnotations, paid])
-      current_user.save
-      @signout_username = current_user.username
-      @signout_md5 = md5
-      sign_out
-    else
-      redirect_to (annotate_start_path)
+      if current_user.new_annotation_count
+        if (current_user.old_annotation_count.nil?) || (current_user.new_annotation_count > current_user.old_annotation_count)
+          md5 = User.generate_md5(current_user)
+          noOfAnnotations = session[:noOfAnnotations]
+          paid = false
+          current_user.md5.push([md5, noOfAnnotations, paid])
+          current_user.old_annotation_count = current_user.new_annotation_count
+          current_user.save
+          @signout_username = current_user.username
+          @signout_md5 = md5          
+        end
+      end
     end
+    sign_out  
   end
-
 end

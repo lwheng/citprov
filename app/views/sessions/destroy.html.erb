@@ -1,9 +1,11 @@
 <header class="jumbotron subhead" id="overview">
 	<h1>Thank You For Annotating!</h1>
 	<p class="lead">You've ended your annotation session</p>
-	<p>
-		Thank you for participating in our experiment. If you are performing this task as a MTurk user, the following MD5 hash has been generated for you.
-		Username: <h3><%= @signout_username %></h3>
-		MD5 Hash: <h3><%= @signout_md5 %></h3>
-	</p>
 </header>
+<p>Thank you for participating in our experiment.</p>
+<% if @signout_username %>
+<p>If you are performing this task as a MTurk user, the following MD5 hash has been generated for you.</p>
+<p>Username: <h3><%= @signout_username %></h3></p>
+<p>MD5 Hash: <h3><%= @signout_md5 %></h3></p>
+<% end %>
+Go back to <%= link_to "Main", home_path  %> or <%= link_to "Annotate", annotate_start_path %> more.

@@ -14,19 +14,6 @@ class Annotation < ActiveRecord::Base
     
     class << self
       def init()
-        # file = File.open("#{Rails.root}/app/assets/data/annotations500.txt", "r")
-        # while (cite_key = file.gets)
-        #   cite_key = cite_key.strip()
-        #   unless find_by_cite_key(cite_key)
-        #     newRecord = new(:cite_key => cite_key)
-        #     newRecord.annotations = {}
-        #     newRecord.annotation_count = 0
-        #     newRecord.context = nil
-        #     newRecord.save
-        #   end
-        # end
-        # file.close()
-        
         # To insert cite keys, and contexts
         # Set annotations to blank, annotation counts to zero
         file = File.open("#{Rails.root}/app/assets/data/context500.txt", "r")

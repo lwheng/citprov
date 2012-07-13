@@ -190,9 +190,7 @@ class PagesController < ApplicationController
       current_user.annotations = {}
     end
     current_user.annotations["#{session[:current_cite].cite_key}##{session[:current_cite].id}"] = "#{annotateType}#{specificDetails}"
-    if current_user.new_annotation_count
-      current_user.old_annotation_count = current_user.new_annotation_count
-    else
+    if current_user.new_annotation_count.nil?
       current_user.new_annotation_count = 0
     end
     
