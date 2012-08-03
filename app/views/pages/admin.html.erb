@@ -19,7 +19,7 @@
 	<tr>
 		<th><%= r.id %></th>
 		<th><%= r.username %></th>
-		<th>
+		<th style="word-wrap: break-word">
 			<% r.annotations.keys.each do |k| %>
 				<p><%= k %> ==> <%= r.annotations[k] %></p>
 			<% end %>
