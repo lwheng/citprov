@@ -1,0 +1,50 @@
+<header class="jumbotron subhead" id="overview">
+<h1>Admin</h1>
+<p class="lead">Displaying all user records</p>
+</header>
+
+<table class = "table table-striped">
+<thead>
+	<tr>
+		<th>ID</th>
+		<th>Username</th>
+		<th>Annotations</th>
+		<th>Old Annotation Count</th>
+		<th>New Annotation Count</th>
+		<th>MD5 [Hash, # Annotations, Paid?]</th>
+	</tr>
+</thead>
+<tbody>
+	<% @all_user.each do |r| %>
+	<tr>
+		<th><%= r.id %></th>
+		<th><%= r.username %></th>
+		<th>
+			<% r.annotations.keys.each do |k| %>
+				<p><%= k %> ==> <%= r.annotations[k] %></p>
+			<% end %>
+		</th>
+		<th>
+			<% if r.old_annotation_count %>
+				<%= r.old_annotation_count %>
+			<% else %>
+				<%= 'Nil' %>
+			<% end %>
+		</th>
+		<th>
+			<% if r.new_annotation_count %>
+				<%= r.new_annotation_count %>
+			<% else %>
+				<%= 'Nil' %>
+			<% end %>
+		</th>
+		<th>
+			<% r.md5.each do |m| %>
+				<p><%= m %></p>
+			<% end %>
+		</th>
+	</tr>
+	<% end %>
+</tbody>
+
+</table>

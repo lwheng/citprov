@@ -206,4 +206,8 @@ class PagesController < ApplicationController
     redirect_to(annotate_work_path)
   end
 
+  def admin
+    @all_user = User.all
+  end
+
 end
