@@ -45,6 +45,20 @@ class Annotation < ActiveRecord::Base
         h
       end
 
+      def admin_display(annotation)
+        thissize = 50
+        if annotation.size > thissize
+          toreturn = ""
+          loops = annotation.size / thissize
+          for i in 0..loops
+            toreturn << annotation[i*thissize,(i+1)*thissize] + "...<br>"
+          end
+          return toreturn[0, toreturn.size-7].html_safe
+        else
+          return annotation
+        end
+      end
+
       def annotation_count()
         # An administrative method used to sort out the no. of annotators for each record
         all.each do |record|

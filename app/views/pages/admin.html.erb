@@ -1,50 +1,52 @@
 <header class="jumbotron subhead" id="overview">
-<h1>Admin</h1>
-<p class="lead">Displaying all user records</p>
+	<h1>Admin</h1>
+	<p class="lead">Displaying all user records</p>
 </header>
 
 <table class = "table table-striped">
-<thead>
+	<thead>
 	<tr>
-		<th>ID</th>
-		<th>Username</th>
-		<th>Annotations</th>
-		<th>Old Annotation Count</th>
-		<th>New Annotation Count</th>
-		<th>MD5 [Hash, # Annotations, Paid?]</th>
+	<th>ID</th>
+	<th>Username</th>
+	<th>Annotations</th>
+	<th>Old Annotation Count</th>
+	<th>New Annotation Count</th>
+	<th>MD5 [Hash, # Annotations, Paid?]</th>
 	</tr>
-</thead>
-<tbody>
-	<% @all_user.each do |r| %>
-	<tr>
-		<th><%= r.id %></th>
-		<th><%= r.username %></th>
-		<th style="word-wrap: break-word">
-			<% r.annotations.keys.each do |k| %>
-				<p><%= k %> ==> <%= r.annotations[k] %></p>
+	</thead>
+	<tbody>
+			<% @all_user.each do |r| %>
+				<tr>
+					<th><%= r.id %></th>
+					<th><%= r.username %></th>
+					<th style="word-wrap: break-word">
+						<% r.annotations.keys.each do |k| %>
+							<p><%= k %> ==> <%= Annotation.admin_display("114!115!116!189!190!196!197!198!199!217!218!219!264!265!") %></p>
+						<% end %>
+					</th>
+					<th>
+						<% if r.old_annotation_count %>
+							<%= r.old_annotation_count %>
+						<% else %>
+							<%= 'Nil' %>
+						<% end %>
+					</th>
+					<th>
+						<% if r.new_annotation_count %>
+							<%= r.new_annotation_count %>
+						<% else %>
+							<%= 'Nil' %>
+						<% end %>
+					</th>
+					<th>
+						<% r.md5.each do |m| %>
+							<p><%= m %></p>
+						<% end %>
+					</th>
+					<th>
+						<%= link_to "Paid", nil, :id => "id_#{r.id}", :class => 'btn btn-primary btn-mini' %>
+					</th>
+				</tr>
 			<% end %>
-		</th>
-		<th>
-			<% if r.old_annotation_count %>
-				<%= r.old_annotation_count %>
-			<% else %>
-				<%= 'Nil' %>
-			<% end %>
-		</th>
-		<th>
-			<% if r.new_annotation_count %>
-				<%= r.new_annotation_count %>
-			<% else %>
-				<%= 'Nil' %>
-			<% end %>
-		</th>
-		<th>
-			<% r.md5.each do |m| %>
-				<p><%= m %></p>
-			<% end %>
-		</th>
-	</tr>
-	<% end %>
-</tbody>
-
+	</tbody>
 </table>
