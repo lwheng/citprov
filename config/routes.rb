@@ -18,6 +18,7 @@ Citprov::Application.routes.draw do
   match '/annotate/display' => 'pages#display', :as => "annotate_display"
   match '/annotate/submit' => 'pages#annotate_submit', :as => "annotate_submit"
   match '/admin' => 'pages#admin', :as => "admin"
+  match '/admin_submit' => 'pages#admin_submit', :as => "admin_submit"
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

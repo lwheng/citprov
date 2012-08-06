@@ -208,6 +208,19 @@ class PagesController < ApplicationController
 
   def admin
     @all_user = User.all
+
+  end
+
+  def admin_submit
+    chk_paid = params[:chk_paid]
+    chk_paid.each do |id|
+      user = User.find_by_id(id)
+      user.md5.each do |m|
+        m[2] = true
+      end
+      user.save
+    end
+    redirect_to admin_path
   end
 
 end

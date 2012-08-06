@@ -15,6 +15,16 @@ class User < ActiveRecord::Base
       time = Time.now.getutc
       return Digest::MD5.hexdigest("#{user.username}#{time}")
     end
+
+    def check_not_paid(md5)
+      md5.each do |m|
+        if !m[2]
+          return true
+        else
+          return false
+        end
+      end
+    end
   end
 end
 # == Schema Information

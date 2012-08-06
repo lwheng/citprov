@@ -46,7 +46,7 @@ class Annotation < ActiveRecord::Base
       end
 
       def admin_display(annotation)
-        thissize = 50
+        thissize = 25
         if annotation.size > thissize
           toreturn = ""
           loops = annotation.size / thissize
