@@ -206,9 +206,12 @@ class PagesController < ApplicationController
     redirect_to(annotate_work_path)
   end
 
-  def admin
+  def admin_notpaid
     @all_user = User.all
+  end
 
+  def admin_paid
+    @all_user = User.all
   end
 
   def admin_submit
@@ -220,7 +223,7 @@ class PagesController < ApplicationController
       end
       user.save
     end
-    redirect_to admin_path
+    redirect_to admin_notpaid_path
   end
 
 end
