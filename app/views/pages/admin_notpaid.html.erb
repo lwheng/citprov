@@ -23,7 +23,7 @@
 						<th><%= r.username %></th>
 						<th style="word-wrap: break-word">
 							<% r.annotations.keys.each do |k| %>
-								<p><%= k %> ==> <%= Annotation.admin_display("114!115!116!189!190!196!197!198!199!217!218!219!264!265!") %></p>
+							<p><%= k %> ==> <%= r.annotations[k] %></p>
 							<% end %>
 						</th>
 						<th>
