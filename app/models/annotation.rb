@@ -157,7 +157,7 @@ class Annotation < ActiveRecord::Base
         display = ""
         begin
            # file = open("http://wing.comp.nus.edu.sg/~antho/#{citing[0]}/#{citing[0,3]}/#{citing}-parscit.xml","r")
-           file = open("http://www.comp.nus.edu.sg/~lwheng/antho/#{cited}-parscit.xml","r")
+           file = open("http://www.comp.nus.edu.sg/~lwheng/antho/#{citing}-parscit.xml","r")
            data = file.read
            root = (Document.new data).root
            citationList = root.elements["algorithm"].elements["citationList"]
@@ -376,6 +376,11 @@ class Annotation < ActiveRecord::Base
           end
         end
         return "Oops! We were unable to show you the specific part where the citation was made. You can look at the original by clicking on the link above this message."
+      end
+      
+      def citing_title(arg)
+        info = arg.split('==>')
+        citing = info[0]
       end
     end
 end
